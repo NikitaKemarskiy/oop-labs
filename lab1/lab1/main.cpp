@@ -1,34 +1,41 @@
 #include "Team.h"
+#include <fstream>
 #include <iostream>
 #include <string>
-#include <fstream>
+#define FILE_PATH "premier_league.csv"
 using namespace std;
+
 
 int main() {
 	Team* teams = nullptr;
 	string buff;
 	ifstream fin;
 
-	fin.open("test.txt");
-	if (!fin.is_open()) {
+	fin.open(FILE_PATH);
+	if (!fin.is_open()) { // File isn't opened
 		cout << "Error: can't open the file" << endl;
 		return 1;
 	}
-	else {
+	else { // File is opened
 		cout << "File is opened" << endl;
 	}
 
-	int index = 0;
+	int index = 0; // Initial index
 	getline(fin, buff); // Read the first line that contains the number of teams
-	teams = new Team[stoi(buff)]; // Create new Team array
+	int n = stoi(buff); // Number of teams
+	teams = new Team[n]; // Create new Team array
 
 	while (!fin.eof()) {
-		string temp;
+		string temp = "";
 		getline(fin, temp);
-		if (fin.eof()) {
-			break;
+		if (temp.empty()) {
+			continue;
 		}
 		teams[index++] = Team(temp);
+	}
+
+	for (int i = 0; i < n; i++) {
+		cout << teams[i].getInfo() << endl;
 	}
 
 	//system("pause");
