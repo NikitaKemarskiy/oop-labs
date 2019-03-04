@@ -1,22 +1,25 @@
 #include "Team.h"
 #include <iostream>
 #include <string>
-
 using namespace std;
 
-class Team {
-private:
-	string name;
-	int wins;
-	int defeats;
-	int goals;
-	int misses;
-	int score;
-public:
-	Team(string info) {
-		//...
-	}
-	void parseInfo(string info) {
+Team::Team() {
+	name = "";
+	wins = 0;
+	defeats = 0;
+	goals = 0;
+	misses = 0;
+	score = 0;
+}
 
-	}
-};
+Team::Team(string info) {
+	parseInfo(info);
+}
+
+void Team::parseInfo(string info) {
+	cout << "parseInfo() was called: " << info << endl;
+}
+
+string Team::getInfo() {
+	//...
+}
