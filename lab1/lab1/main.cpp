@@ -4,19 +4,17 @@
 #include <fstream>
 using namespace std;
 
+void openingFile(ifstream &, string);
+
 int main() {
 	Team* teams = nullptr;
 	string buff;
+	string fileName;
 	ifstream fin;
 
-	fin.open("test.txt");
-	if (!fin.is_open()) {
-		cout << "Error: can't open the file" << endl;
-		return 1;
-	}
-	else {
-		cout << "File is opened" << endl;
-	}
+	cout << "Input name of file: "; getline(cin, fileName);
+
+	openingFile(fin, fileName);
 
 	int index = 0;
 	getline(fin, buff); // Read the first line that contains the number of teams
@@ -31,6 +29,16 @@ int main() {
 		teams[index++] = Team(temp);
 	}
 
-	//system("pause");
+	fin.close();
+	system("pause");
 	return 0;
+}
+
+void openingFile(ifstream &fin, string name) {
+	fin.open(name);
+	if (!fin.is_open()) {
+		cout << "Error!!!" << endl;
+		exit(1);
+	}
+	cout << "File is opened!" << endl;
 }
