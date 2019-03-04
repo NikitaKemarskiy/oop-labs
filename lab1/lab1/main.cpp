@@ -2,25 +2,18 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#define FILE_PATH "premier_league.csv"
 using namespace std;
+#define FILE_PATH "premier_league.csv"
 
+void openingFile(ifstream &, string);
 
 int main() {
 	Team* teams = nullptr;
 	string buff;
 	ifstream fin;
 
-	fin.open(FILE_PATH);
-	if (!fin.is_open()) { // File isn't opened
-		cout << "Error: can't open the file" << endl;
-		return 1;
-	}
-	else { // File is opened
-		cout << "File is opened" << endl;
-	}
-
 	int index = 0; // Initial index
+	openingFile(fin, fileName); // Open the file
 	getline(fin, buff); // Read the first line that contains the number of teams
 	int n = stoi(buff); // Number of teams
 	teams = new Team[n]; // Create new Team array
@@ -38,6 +31,17 @@ int main() {
 		cout << teams[i].getInfo() << endl;
 	}
 
-	//system("pause");
+	fin.close();
+	
+	system("pause");
 	return 0;
+}
+
+void openingFile(ifstream &fin, string name) {
+	fin.open(name);
+	if (!fin.is_open()) {
+		cout << "Error: can't open the file." << endl;
+		exit(1);
+	}
+	cout << "File was opened." << endl;
 }
