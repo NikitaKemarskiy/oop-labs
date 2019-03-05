@@ -57,7 +57,7 @@ istream& readFile(ifstream &fin, Team *teams) {
 
 //Write to the file
 ostream& writeFile(ofstream &fout, Team *teams, int numberOfTeam) {
-	string main = "#,Team name,Wins,Defeats,Draws,Difference goals,Score";
+	string main = "#,Team name,Wins,Draws,Defeats,Difference goals,Score";
 	fout << main << endl;
 	for (int i = 0; i < numberOfTeam; i++) {
 		fout << to_string(i + 1) << ".," << teams[i].getInfo() << endl;
