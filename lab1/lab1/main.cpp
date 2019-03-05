@@ -2,8 +2,11 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+
+#define INPUT_FILE "./input/premier_league.csv"
+#define OUTPUT_FILE "./output/results.csv"
+
 using namespace std;
-#define FILE_PATH "premier_league.csv"
 
 void openingFile(ifstream &, string);
 
@@ -11,29 +14,31 @@ int main() {
 	Team* teams = nullptr;
 	string buff;
 	ifstream fin;
+	ofstream fout;
 
 	int index = 0; // Initial index
-	openingFile(fin, fileName); // Open the file
+	openingFile(fin, INPUT_FILE); // Open the file
 	getline(fin, buff); // Read the first line that contains the number of teams
 	int n = stoi(buff); // Number of teams
 	teams = new Team[n]; // Create new Team array
 
-	while (!fin.eof()) {
+	while (!fin.eof()) { // While input file isn't empty
 		string temp = "";
-		getline(fin, temp);
-		if (temp.empty()) {
-			continue;
+		getline(fin, temp); // Read next line to the temp string
+		if (temp.empty()) { // If temp is empty
+			continue; // Go to the next iteration
 		}
-		teams[index++] = Team(temp);
+		teams[index++] = Team(temp); // Add new team to the teams array
 	}
+	fin.close(); // Close an input stream
 
 	for (int i = 0; i < n; i++) {
 		cout << teams[i].getInfo() << endl;
 	}
 
-	fin.close();
+	// Sorting and writing to the file
 	
-	system("pause");
+	//system("pause");
 	return 0;
 }
 

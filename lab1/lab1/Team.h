@@ -2,6 +2,7 @@
 #define _TEAM_INCLUDED
 
 #include <string>
+
 using namespace std;
 
 // Secure substr
