@@ -15,7 +15,7 @@ int main() {
 	ifstream fin;
 	ofstream fout;
 	
-	openingFileIN(fin, INPUT_FILE); // Open the file
+	openFileIN(fin, INPUT_FILE); // Open the file
 	getline(fin, buff); // Read the first line that contains the number of teams
 	int n = stoi(buff); // Number of teams
 	teams = new Team[n]; // Create new Team array
@@ -26,11 +26,13 @@ int main() {
 	// Sorting and writing to the file
 	sortTeams(teams, n);
 	// Open file output stream
-	openingFileOUT(fout, OUTPUT_FILE);
+	openFileOUT(fout, OUTPUT_FILE);
 	// Write to file
 	writeFile(fout, teams, n);
 
 	fout.close();
-	system("pause");
+
+	delete[] teams;
+	
 	return 0;
 }

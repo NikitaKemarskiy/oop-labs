@@ -3,9 +3,9 @@
 // Secure substr
 string substrs(string str, size_t from = 0, size_t to = string::npos);
 // Open the file input stream
-istream& openingFileIN(ifstream &, string);
+istream& openFileIN(ifstream &, string);
 // Open the file output stream
-ostream& openingFileOUT(ofstream &, string);
+ostream& openFileOUT(ofstream &, string);
 // Reading the file and create array
 istream& readFile(ifstream &, Team *);
 // Write to the file good information :)

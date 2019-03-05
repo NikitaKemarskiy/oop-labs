@@ -20,24 +20,24 @@ void sortTeams(Team *teams, int numberOfTeams) {
 }
 
 // Open the file input stream
-istream& openingFileIN(ifstream &fin, string name) {
+istream& openFileIN(ifstream &fin, string name) {
 	fin.open(name);
 	if (!fin.is_open()) {
 		cout << "Error: can't open the file." << endl;
 		exit(1);
 	}
-	cout << "File was opened." << endl;
+	cout << "Input file was opened." << endl;
 	return fin;
 }
 
 // Open the file output stream
-ostream& openingFileOUT(ofstream &fout, string name) {
+ostream& openFileOUT(ofstream &fout, string name) {
 	fout.open(name);
 	if (!fout.is_open()) {
 		cout << "Error: can't open the file." << endl;
 		exit(1);
 	}
-	cout << "File was opened." << endl;
+	cout << "Output file was opened." << endl;
 	return fout;
 }
 
@@ -57,8 +57,8 @@ istream& readFile(ifstream &fin, Team *teams) {
 
 //Write to the file
 ostream& writeFile(ofstream &fout, Team *teams, int numberOfTeam) {
-	string main = "#,Team name,Wins,Defeats,Draws,Difference goals,Score\n";
-	fout << main;
+	string main = "#,Team name,Wins,Defeats,Draws,Difference goals,Score";
+	fout << main << endl;
 	for (int i = 0; i < numberOfTeam; i++) {
 		fout << to_string(i + 1) << ".," << teams[i].getInfo() << endl;
 	}
