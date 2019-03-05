@@ -1,6 +1,7 @@
 #include "Team.h"
 #include <iostream>
 #include <string>
+
 using namespace std;
 
 // Secure substr
@@ -45,14 +46,17 @@ void Team::addGame(string game) {
 	if (ind != string::npos) { // Colon was found
 		goals_ = stoi(substrs(game, 0, ind));
 		misses_ = substrs(game, ind + 1).empty() ? 0 : stoi(substrs(game, ind + 1));
-	} else { // Colon wasn't found
+	}
+	else { // Colon wasn't found
 		goals_ = stoi(game);
 	}
 	if (goals_ > misses_) {
 		wins++;
-	} else if (goals_ < misses_) {
+	}
+	else if (goals_ < misses_) {
 		defeats++;
-	} else {
+	}
+	else {
 		draws++;
 	}
 	goals += goals_;
@@ -74,7 +78,8 @@ void Team::parseInfo(string info) {
 		if (ind != string::npos) { // Comma was found
 			buff = substrs(info, 0, ind);
 			info = substrs(info, ind + 1);
-		} else { // Comma wasn't found
+		}
+		else { // Comma wasn't found
 			buff = substrs(info, 0);
 			info = "";
 		}
