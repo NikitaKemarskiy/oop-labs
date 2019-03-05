@@ -1,19 +1,9 @@
 #include "Team.h"
+#include "Functions.h"
 #include <iostream>
 #include <string>
 
 using namespace std;
-
-// Secure substr
-string substrs(string str, size_t from, size_t to) {
-	if (from > str.length() - 1) {
-		return "";
-	}
-	if (from < 0) {
-		return str.substr(0);
-	}
-	return str.substr(from, to);
-}
 
 // Default constructor
 Team::Team() {
@@ -36,6 +26,7 @@ Team::Team(string info) {
 	misses = 0;
 	score = 0;
 	parseInfo(info);
+	differenceGoals = goals - misses;
 }
 
 // Function that adds game (change wins / defeats / draws, goals / misses)
@@ -100,10 +91,38 @@ string Team::getInfo() {
 	string data = "";
 	data += name + ',';
 	data += to_string(wins) + ',';
-	data += to_string(defeats) + ',';
 	data += to_string(draws) + ',';
-	data += to_string(goals) + ',';
-	data += to_string(misses) + ',';
+	data += to_string(defeats) + ',';
+	data += to_string(goals) + '-' + to_string(misses) + ',';
 	data += to_string(score);
 	return data;
+}
+
+//Operator =
+Team & Team::operator=(const Team newTeam)
+{
+	this->wins = newTeam.wins;
+	this->draws = newTeam.draws;
+	this->defeats = newTeam.defeats;
+	this->differenceGoals = newTeam.differenceGoals;
+	this->goals = newTeam.goals;
+	this->misses = newTeam.misses;
+	this->name = newTeam.name;
+	this->score = newTeam.score;
+
+	return *this;
+}
+
+//Comparison of objects
+bool Team::equals(const Team &other) {
+	if (this->score < other.score) {
+		return true;
+	}
+	if (this->score > other.score) {
+		return false;
+	}
+	if (this->score == other.score && this->differenceGoals < other.differenceGoals) {
+		return true;
+	}
+	else { return false; }
 }
