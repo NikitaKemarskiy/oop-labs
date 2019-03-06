@@ -44,13 +44,37 @@ ostream& openFileOUT(ofstream &fout, string name) {
 // Reading the file
 istream& readFile(ifstream &fin, Team *teams) {
 	int index = 0;
+
 	while (!fin.eof()) { // While input file isn't empty
 		string temp = "";
+		int length = 0;
+
 		getline(fin, temp); // Read next line to the temp string
 		if (temp.empty()) { // If temp is empty
 			continue; // Go to the next iteration
 		}
-		teams[index++] = Team(temp); // Add new team to the teams array
+
+		while (!temp.empty()) {
+			string buff = "";
+			size_t ind = temp.find(',');
+			if (ind != string::npos) { // Comma was found
+				buff = substrs(temp, 0, ind);
+				temp = substrs(temp, ind + 1);
+			} else { // Comma wasn't found
+				buff = substrs(temp, 0);
+				temp = "";
+			}
+
+			if (buff.length() > 0 && isalpha(buff[0]) == 0) { // Buff is a goal
+				for (int i = index - 1; i >= index - length; i--) {
+					teams[i].addGame(buff);
+				}
+			} else { // Buff is a name
+				teams[index++].setName(buff);
+				length++;
+			}
+		}
+		//teams[index++] = Team(temp); // Add new team to the teams array
 	}
 	return fin;
 }

@@ -19,17 +19,16 @@ private:
 public:
 	// Constructor
 	Team();
-	Team(string);
+	//Team(string);
 	// Methods
 	void addGame(string game); // Add game (change wins / defeats / draws, goals / misses)
 	void updateScore(); // Update team's score
 	void parseInfo(string info); // Parse passed info
 	string getInfo(); // Get team's info
 	// Getters
-	int getGoals() { return goals; }
-	int getMisses() { return misses; }
 	int getScore() { return score; }
-	string getName() { return name; }
+	// Setters
+	void setName(string);
 	//Operator =
 	Team& operator=(const Team);
 	//Comparison of objects

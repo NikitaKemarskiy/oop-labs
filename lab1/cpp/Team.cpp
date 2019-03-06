@@ -17,7 +17,7 @@ Team::Team() {
 }
 
 // Constructor with info as a parameter
-Team::Team(string info) {
+/*Team::Team(string info) {
 	name = "";
 	wins = 0;
 	defeats = 0;
@@ -26,8 +26,7 @@ Team::Team(string info) {
 	misses = 0;
 	score = 0;
 	parseInfo(info);
-	differenceGoals = goals - misses;
-}
+}*/
 
 // Function that adds game (change wins / defeats / draws, goals / misses)
 void Team::addGame(string game) {
@@ -57,6 +56,7 @@ void Team::addGame(string game) {
 // Function that updates team's score
 void Team::updateScore() {
 	score = wins * 3 + draws;
+	differenceGoals = goals - misses;
 }
 
 // Function that parses passed info
@@ -96,6 +96,10 @@ string Team::getInfo() {
 	data += to_string(goals) + '-' + to_string(misses) + ',';
 	data += to_string(score);
 	return data;
+}
+
+void Team::setName(string name) {
+	this->name = name;
 }
 
 //Operator =
