@@ -49,41 +49,6 @@ void Team::updateScore() {
 	differenceGoals = goals - misses;
 }
 
-// Function that parses passed info
-/*void Team::parseInfo(string info) {
-	bool nameInit = false;
-
-	while (!info.empty()) {
-		string buff = "";
-		size_t ind = info.find(',');
-		if (info[0] == '"'){
-			info = substrs(info, 1);
-			int ind_ = info.find('"');
-			buff += '"';
-			buff += substrs(info, 0, ind_ + 1);
-			info = ind_ >= info.length() - 1 ? substrs(info, ind_ + 1) : substrs(info, ind_ + 2);
-		}
-		else if (ind != string::npos) { // Comma was found
-			buff = substrs(info, 0, ind);
-			info = substrs(info, ind + 1);
-		}
-		else { // Comma wasn't found
-			buff = substrs(info, 0);
-			info = "";
-		}
-		if (!nameInit) { // Name wasn't initialized
-			name = buff;
-			nameInit = true;
-			continue;
-		}
-		// Name was initialized
-		addGame(buff);
-	}
-
-	
->>>>>>> lab1-task
-}*/
-
 // Function that returns team's info
 string Team::getInfo() {
 	string data = "";
