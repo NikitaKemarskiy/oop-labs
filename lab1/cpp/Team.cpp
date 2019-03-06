@@ -66,7 +66,14 @@ void Team::parseInfo(string info) {
 	while (!info.empty()) {
 		string buff = "";
 		size_t ind = info.find(',');
-		if (ind != string::npos) { // Comma was found
+		if (info[0] == '"'){
+			info = substrs(info, 1);
+			int ind_ = info.find('"');
+			buff += '"';
+			buff += substrs(info, 0, ind_ + 1);
+			info = ind_ >= info.length() - 1 ? substrs(info, ind_ + 1) : substrs(info, ind_ + 2);
+		}
+		else if (ind != string::npos) { // Comma was found
 			buff = substrs(info, 0, ind);
 			info = substrs(info, ind + 1);
 		}
