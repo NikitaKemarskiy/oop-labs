@@ -16,18 +16,6 @@ Team::Team() {
 	score = 0;
 }
 
-// Constructor with info as a parameter
-/*Team::Team(string info) {
-	name = "";
-	wins = 0;
-	defeats = 0;
-	draws = 0;
-	goals = 0;
-	misses = 0;
-	score = 0;
-	parseInfo(info);
-}*/
-
 // Function that adds game (change wins / defeats / draws, goals / misses)
 void Team::addGame(string game) {
 	size_t ind = game.find(':');
@@ -57,33 +45,6 @@ void Team::addGame(string game) {
 void Team::updateScore() {
 	score = wins * 3 + draws;
 	differenceGoals = goals - misses;
-}
-
-// Function that parses passed info
-void Team::parseInfo(string info) {
-	bool nameInit = false;
-
-	while (!info.empty()) {
-		string buff = "";
-		size_t ind = info.find(',');
-		if (ind != string::npos) { // Comma was found
-			buff = substrs(info, 0, ind);
-			info = substrs(info, ind + 1);
-		}
-		else { // Comma wasn't found
-			buff = substrs(info, 0);
-			info = "";
-		}
-		if (!nameInit) { // Name wasn't initialized
-			name = buff;
-			nameInit = true;
-			continue;
-		}
-		// Name was initialized
-		addGame(buff);
-	}
-
-	updateScore();
 }
 
 // Function that returns team's info
