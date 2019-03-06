@@ -57,7 +57,12 @@ istream& readFile(ifstream &fin, Team *teams) {
 		while (!temp.empty()) {
 			string buff = "";
 			size_t ind = temp.find(',');
-			if (ind != string::npos) { // Comma was found
+			if (temp[0] == '"') {
+				temp = substrs(temp, 1);
+				ind = temp.find('"');
+				buff += '"' + substrs(temp, 0, ind + 1);
+				temp = ind >= temp.length() - 1 ? substrs(temp, ind + 1) : substrs(temp, ind + 2);
+			} else if (ind != string::npos) { // Comma was found
 				buff = substrs(temp, 0, ind);
 				temp = substrs(temp, ind + 1);
 			} else { // Comma wasn't found
@@ -65,7 +70,7 @@ istream& readFile(ifstream &fin, Team *teams) {
 				temp = "";
 			}
 
-			if (buff.length() > 0 && isalpha(buff[0]) == 0) { // Buff is a goal
+			if (buff.length() > 0 && isdigit(buff[0]) != 0) { // Buff is a goal
 				for (int i = index - 1; i >= index - length; i--) {
 					teams[i].addGame(buff);
 				}
