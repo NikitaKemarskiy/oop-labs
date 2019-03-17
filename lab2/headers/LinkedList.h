@@ -8,9 +8,9 @@ using namespace std;
 // ListItem класс
 class ListItem {
 private:
-	string key;
-	string data;
-	ListItem* next;
+	string key; // Ключ элемента
+	string data; // Значение элемента
+	ListItem* next; // Ссылка на следующий элемент
 public:
 	// Конструкторы
 	ListItem();
@@ -19,30 +19,32 @@ public:
 	ListItem(string data, ListItem* next);
 	ListItem(string key, string data, ListItem* next);
 	// Сеттеры
-	void setNext(ListItem* next);
-	void setData(string data);
+	void setNext(ListItem* next); // Установить следующий элемент
+	void setKey(string key); // Установить ключ
+	void setData(string data); // Установить значение
 	// Геттеры
-	ListItem* getNext();
-	string getKey();
-	string getData();
+	ListItem* getNext(); // Получить следующий элемент
+	string getKey(); // Получить ключ
+	string getData(); // Получить значение
 };
 
 // LinkedList класс
 class LinkedList {
 private:
-	int size;
-	ListItem* first;
-	ListItem* last;
+	int size; // Размер списка
+	ListItem* first; // Первый элемент
+	ListItem* last; // Последний элемент
 public:
 	// Конструкторы
 	LinkedList();
 	// Методы
-	void add(string data);
-	void add(string key, string data);
-	void remove(string key);
-	string find(string key);
-	int getSize();
-	string toString();
+	void add(string data); // Добавление элемента
+	void add(string key, string data); // Добавление элемента с явно заданным ключом
+	void remove(string key); // Удаление элемента по ключу
+	ListItem* get(int index); // Получение элемента по индексу
+	string find(string key); // Поиск элемента по ключу
+	int getSize(); // Получение размера списка
+	string toString(); // Конвертация в строку
 };
 
 #endif
