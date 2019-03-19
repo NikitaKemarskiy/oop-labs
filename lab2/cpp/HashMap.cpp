@@ -47,7 +47,7 @@ void HashMap::checkLoad() { // Проверка загрузки HashMap
 int HashMap::hash(string str) { // Нахождение хеша
 	int hash = 0;
 	for (int i = 0; i < str.length(); i++) {
-		hash += abs(static_cast<int>(str[i]))*(i + 1);
+		hash += abs(static_cast<int>(tolower(str[i])))*(i+1);
 	}
 	return hash % size;
 }
@@ -61,5 +61,9 @@ void HashMap::add(string key, string value) { // Добавление, хеш на основе перед
 
 //string HashMap::find(string key) { // Поиск по ключу
 	//....
+<<<<<<< HEAD
 //
 // loadFactor = 
+=======
+}
+>>>>>>> 32f4bbb27f0a9a119f4b6586230fb30aad21b5eb
