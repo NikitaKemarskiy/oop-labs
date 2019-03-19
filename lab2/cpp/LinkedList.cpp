@@ -4,16 +4,10 @@
 
 using namespace std;
 
-// ListItem РєР»Р°СЃСЃ
+// ListItem класс
 ListItem::ListItem() {
 	key = "";
 	data = "";
-	next = nullptr;
-}
-
-ListItem::ListItem(string data) {
-	this->key = data;
-	this->data = data;
 	next = nullptr;
 }
 
@@ -23,127 +17,83 @@ ListItem::ListItem(string key, string data) {
 	next = nullptr;
 }
 
-ListItem::ListItem(string data, ListItem* next) {
-	this->key = data;
-	this->data = data;
+void ListItem::setNext(ListItem* next) { // Установить следующий элемент
 	this->next = next;
 }
 
-ListItem::ListItem(string key, string data, ListItem* next) {
-	this->key = key;
-	this->data = data;
-	this->next = next;
-}
-
-void ListItem::setNext(ListItem* next) { // РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЃР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚
-	this->next = next;
-}
-
-void ListItem::setKey(string key) { // РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РєР»СЋС‡
+void ListItem::setKey(string key) { // Установить ключ
 	this->key = key;
 }
 
-void ListItem::setData(string data) { // РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Р·РЅР°С‡РµРЅРёРµ
+void ListItem::setData(string data) { // Установить значение
 	this->data = data;
 }
 
-ListItem* ListItem::getNext() { // РџРѕР»СѓС‡РёС‚СЊ СЃР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚
+ListItem* ListItem::getNext() { // Получить следующий элемент
 	return next;
 }
 
-string ListItem::getKey() { // РџРѕР»СѓС‡РёС‚СЊ РєР»СЋС‡
+string ListItem::getKey() { // Получить ключ
 	return key;
 }
 
-string ListItem::getData() { // РџРѕР»СѓС‡РёС‚СЊ Р·РЅР°С‡РµРЅРёРµ
+string ListItem::getData() { // Получить значение
 	return data;
 }
 
-// LinkedList РєР»Р°СЃСЃ
+// LinkedList класс
 LinkedList::LinkedList() {
 	size = 0;
 	first = nullptr;
 	last = nullptr;
 }
 
-void LinkedList::add(string data) { // Р”РѕР±Р°РІР»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
-	size++; // РРЅРєСЂРµРјРµРЅС‚РёСЂСѓРµРј СЂР°Р·РјРµСЂ
-	ListItem* last_ = last;
-	last = new ListItem(data);
-	if (!last_) { // РЎРїРёСЃРѕРє Р±С‹Р» РїСѓСЃС‚
-		first = last;
-	} else { // Р’ СЃРїРёСЃРєРµ Р±С‹Р»Рё СЌР»РµРјРµРЅС‚С‹
-		last_->setNext(last); // РЎС‚Р°РІРёРј СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РїРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚
-	}
-}
-
-void LinkedList::add(string key, string data) { // Р”РѕР±Р°РІР»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° СЃ СЏРІРЅРѕ Р·Р°РґР°РЅРЅС‹Рј РєР»СЋС‡РѕРј
-	size++; // РРЅРєСЂРµРјРµРЅС‚РёСЂСѓРµРј СЂР°Р·РјРµСЂ
+void LinkedList::add(string key, string data) { // Добавление элемента с явно заданным ключом
+	size++; // Инкрементируем размер
 	ListItem* last_ = last;
 	last = new ListItem(key, data);
-	if (!last_) { // РЎРїРёСЃРѕРє Р±С‹Р» РїСѓСЃС‚
+	if (!last_) { // Список был пуст
 		first = last;
-	} else { // Р’ СЃРїРёСЃРєРµ Р±С‹Р»Рё СЌР»РµРјРµРЅС‚С‹
-		last_->setNext(last); // РЎС‚Р°РІРёРј СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РїРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚
+	}
+	else { // В списке были элементы
+		last_->setNext(last); // Ставим указатель на последний элемент
 	}
 }
 
-void LinkedList::remove(string key) { // РЈРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РїРѕ РєР»СЋС‡Сѓ
-	ListItem* curr = first;
-	ListItem* prev = nullptr;
-	while (curr) { // РџРѕРєР° РЅРµ РґРѕР№РґРµРј РґРѕ РїРѕСЃР»РµРґРЅРµРіРѕ СЌР»РµРјРµРЅС‚Р°
-		if (curr->getKey() == key) { // Р­Р»РµРјРµРЅС‚ РґР»СЏ СѓРґР°Р»РµРЅРёСЏ РЅР°Р№РґРµРЅ
-			if (prev) { // Р•СЃС‚СЊ РїСЂРµРґС‹РґСѓС‰РёР№ СЌР»РµРјРµРЅС‚
-				size--;
-				prev->setNext(curr->getNext());
-				delete curr;
-				break;
-			} else { // РќРµС‚ РїСЂРµРґС‹РґСѓС‰РµРіРѕ СЌР»РµРјРµРЅС‚Р°
-				size--;
-				first = curr->getNext();
-				delete curr;
-				break;
-			}
-		}
-		prev = curr; // РџСЂРёСЃРІР°РёРІР°РµРј С‚РµРєСѓС‰РёР№ СЌР»РµРјРµРЅС‚ РїСЂРµРґС‹РґСѓС‰РµРјСѓ
-		curr = curr->getNext(); // РџСЂРёСЃРІР°РёРІР°РµРј СЃР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚ С‚РµРєСѓС‰РµРјСѓ
-	}
-}
-
-ListItem* LinkedList::get(int index) { // РџРѕР»СѓС‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РїРѕ РёРЅРґРµРєСЃСѓ
-	if (index < 0 || index >= size) { // РќРµРІРµСЂРЅС‹Р№ РёРЅРґРµРєСЃ
-		throw out_of_range("invalid index was passed."); // РљРёРґР°РµРј РёСЃРєР»СЋС‡РµРЅРёРµ
+ListItem* LinkedList::get(int index) { // Получение элемента по индексу
+	if (index < 0 || index >= size) { // Неверный индекс
+		throw out_of_range("invalid index was passed."); // Кидаем исключение
 	}
 	ListItem* curr = first;
 	int currIndex = 0;
-	while (curr) { // РџРѕРєР° РЅРµ РґРѕР№РґРµРј РґРѕ РїРѕСЃР»РµРґРЅРµРіРѕ СЌР»РµРјРµРЅС‚Р°
-		if (currIndex == index) { // Р­Р»РµРјРµРЅС‚ РЅР°Р№РґРµРЅ
+	while (curr) { // Пока не дойдем до последнего элемента
+		if (currIndex == index) { // Элемент найден
 			return curr;
 		}
 		currIndex++;
 		curr = curr->getNext();
 	}
-	throw out_of_range("invalid index was passed."); // РќРµРІРµСЂРЅС‹Р№ РёРЅРґРµРєСЃ, РєРёРґР°РµРј РёСЃРєР»СЋС‡РµРЅРёРµ
+	throw out_of_range("invalid index was passed."); // Неверный индекс, кидаем исключение
 }
 
-string LinkedList::find(string key) { // РџРѕРёСЃРє СЌР»РµРјРµРЅС‚Р° РїРѕ РєР»СЋС‡Сѓ
+/*string LinkedList::find(string key) { // Поиск элемента по ключу
 	ListItem* curr = first;
-	while (curr) { // РџРѕРєР° РЅРµ РґРѕР№РґРµРј РґРѕ РїРѕСЃР»РµРґРЅРµРіРѕ СЌР»РµРјРµРЅС‚Р°
-		if (curr->getKey() == key) { // Р­Р»РµРјРµРЅС‚ РЅР°Р№РґРµРЅ
+	while (curr) { // Пока не дойдем до последнего элемента
+		if (curr->getKey() == key) { // Элемент найден
 			return curr->getData();
 		}
 		curr = curr->getNext();
 	}
-}
+}*/
 
-int LinkedList::getSize() { // РџРѕР»СѓС‡РµРЅРёРµ СЂР°Р·РјРµСЂР° СЃРїРёСЃРєР°
+int LinkedList::getSize() { // Получение размера списка
 	return size;
 }
 
-string LinkedList::toString() { // РљРѕРЅРІРµСЂС‚Р°С†РёСЏ РІ СЃС‚СЂРѕРєСѓ
+string LinkedList::toString() { // Конвертация в строку
 	string str = "[";
 	ListItem* curr = first;
-	while (curr) { // РџРѕРєР° РЅРµ РґРѕР№РґРµРј РґРѕ РїРѕСЃР»РµРґРЅРµРіРѕ СЌР»РµРјРµРЅС‚Р°
+	while (curr) { // Пока не дойдем до последнего элемента
 		str += "(" + curr->getKey() + "; " + curr->getData() + ")";
 		curr = curr->getNext();
 	}

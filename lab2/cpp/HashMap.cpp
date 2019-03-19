@@ -1,11 +1,12 @@
 #include "HashMap.h"
 #include <string>
+#include <iostream>
 
 using namespace std;
 
-// HashMap РєР»Р°СЃСЃ
-const int HashMap::defaultSize = 256; // Р Р°Р·РјРµСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
-const double HashMap::maxLoad = 80; // РњР°РєСЃРёРјР°Р»СЊРЅС‹Р№ РґРѕРїСѓСЃС‚РёРјС‹Р№ РєРѕСЌС„С„РёС†РёРµРЅС‚ Р·Р°РїРѕР»РЅРµРЅРёСЏ
+// HashMap класс
+const int HashMap::defaultSize = 256; // Размер по умолчанию
+const double HashMap::maxLoad = 80; // Максимальный допустимый коэффициент заполнения
 
 HashMap::HashMap() {
 	amount = 0;
@@ -19,14 +20,14 @@ HashMap::HashMap(int size) {
 	this->arr = new LinkedList[this->size];
 }
 
-void HashMap::resize() { // РЈРІРµР»РёС‡РµРЅРёРµ СЂР°Р·РјРµСЂР° HashMap
-	int size_ = size; // Р—Р°РїРѕРјРёРЅР°РµРј СЃС‚Р°СЂС‹Р№ СЂР°Р·РјРµСЂ
-	LinkedList* arr_ = arr; // Р—Р°РїРѕРјРёРЅР°РµРј С‚РµРєСѓС‰РёР№ РјР°СЃСЃРёРІ СЃРїРёСЃРєРѕРІ
-	
+void HashMap::resize() { // Увеличение размера HashMap
+	int size_ = size; // Запоминаем старый размер
+	LinkedList* arr_ = arr; // Запоминаем текущий массив списков
+
 	amount = 0;
 	size *= 2;
-	arr = new LinkedList[size]; // РЎРѕР·РґР°РµРј РЅРѕРІС‹Р№ РјР°СЃСЃРёРІ СЃРїРёСЃРєРѕРІ РІ РґРІР° СЂР°Р·Р° Р±РѕР»СЊС€Рµ СЂР°Р·РјРµСЂРѕРј
-	
+	arr = new LinkedList[size]; // Создаем новый массив списков в два раза больше размером
+
 	for (int i = 0; i < size_; i++) {
 		LinkedList curr = arr_[i];
 		for (int j = 0; j < curr.getSize(); i++) {
@@ -36,42 +37,29 @@ void HashMap::resize() { // РЈРІРµР»РёС‡РµРЅРёРµ СЂР°Р·РјРµСЂР° HashMap
 	}
 }
 
-void HashMap::checkLoad() { // РџСЂРѕРІРµСЂРєР° Р·Р°РіСЂСѓР·РєРё HashMap
-	double loadFactor = amount / size * 100; // РљРѕСЌС„С„РёС†РёРµРЅС‚ Р·Р°РїРѕР»РЅРµРЅРёСЏ
-	if (loadFactor > maxLoad) { // РўРµРєСѓС‰РёР№ РєРѕСЌС„С„РёС†РёРµРЅС‚ Р·Р°РїРѕР»РЅРµРЅРёСЏ РїСЂРµРІС‹С€Р°РµС‚ РјР°РєСЃРёРјР°Р»СЊРЅС‹Р№
-		resize(); // РЈРІРµР»РёС‡РёРІР°РµРј СЂР°Р·РјРµСЂ
+void HashMap::checkLoad() { // Проверка загрузки HashMap
+	double loadFactor = amount / size * 100; // Коэффициент заполнения
+	if (loadFactor > maxLoad) { // Текущий коэффициент заполнения превышает максимальный
+		resize(); // Увеличиваем размер
 	}
 }
 
-int HashMap::hash(string str) { // РќР°С…РѕР¶РґРµРЅРёРµ С…РµС€Р°
+int HashMap::hash(string str) { // Нахождение хеша
 	int hash = 0;
-	for (int i = 0; i < 6; i++) {
-		hash += abs(static_cast<int>(str[i]))*(i+1);
+	for (int i = 0; i < str.length(); i++) {
+		hash += abs(static_cast<int>(str[i]))*(i + 1);
 	}
-	return hash;
+	return hash % size;
 }
 
-void HashMap::add(string value) { // Р”РѕР±Р°РІР»РµРЅРёРµ, С…РµС€ РЅР° РѕСЃРЅРѕРІРµ СЃР°РјРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ
-	amount++; // РРЅРєСЂРµРјРµРЅС‚РёСЂСѓРµРј РѕР±С‰РµРµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ
-	int index = hash(value) % size; // РќР°С…РѕРґРёРј РїРѕР·РёС†РёСЋ РІ РјР°СЃСЃРёРІРµ
-	arr[index].add(value);
-	checkLoad(); // РџСЂРѕРІРµСЂСЏРµРј РєРѕСЌС„С„РёС†РёРµРЅС‚ Р·Р°РїРѕР»РЅРµРЅРёСЏ HashMap
-}
-
-void HashMap::add(string key, string value) { // Р”РѕР±Р°РІР»РµРЅРёРµ, С…РµС€ РЅР° РѕСЃРЅРѕРІРµ РїРµСЂРµРґР°РЅРЅРѕРіРѕ РєР»СЋС‡Р°
-	amount++; // РРЅРєСЂРµРјРµРЅС‚РёСЂСѓРµРј РѕР±С‰РµРµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ
-	int index = hash(key) % size; // РќР°С…РѕРґРёРј РїРѕР·РёС†РёСЋ РІ РјР°СЃСЃРёРІРµ
+void HashMap::add(string key, string value) { // Добавление, хеш на основе переданного ключа
+	amount++; // Инкрементируем общее количество элементов
+	int index = hash(key) % size; // Находим позицию в массиве
 	arr[index].add(key, value);
-	checkLoad(); // РџСЂРѕРІРµСЂСЏРµРј РєРѕСЌС„С„РёС†РёРµРЅС‚ Р·Р°РїРѕР»РЅРµРЅРёСЏ HashMap
+	checkLoad(); // Проверяем коэффициент заполнения HashMap
 }
 
-void HashMap::remove(string key) { // РЈРґР°Р»РµРЅРёРµ РїРѕ РєР»СЋС‡Сѓ
-	//...
-}
-
-string HashMap::find(string key) { // РџРѕРёСЃРє РїРѕ РєР»СЋС‡Сѓ
+//string HashMap::find(string key) { // Поиск по ключу
 	//....
-}
-
-
+//
 // loadFactor = 

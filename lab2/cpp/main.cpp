@@ -23,6 +23,5 @@ int main(int argc, char** argv) {
 	cout << list.get(-1) << endl;
 
 	cout << list.toString() << endl;*/
-
 	return 0;
 }

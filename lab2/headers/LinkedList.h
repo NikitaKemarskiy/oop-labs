@@ -5,46 +5,41 @@
 
 using namespace std;
 
-// ListItem РєР»Р°СЃСЃ
+// ListItem класс
 class ListItem {
 private:
-	string key; // РљР»СЋС‡ СЌР»РµРјРµРЅС‚Р°
-	string data; // Р—РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
-	ListItem* next; // РЎСЃС‹Р»РєР° РЅР° СЃР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚
+	string key; // Ключ элемента
+	string data; // Значение элемента
+	ListItem* next; // Ссылка на следующий элемент
 public:
-	// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
+	// Конструкторы
 	ListItem();
-	ListItem(string data);
 	ListItem(string key, string data);
-	ListItem(string data, ListItem* next);
-	ListItem(string key, string data, ListItem* next);
-	// РЎРµС‚С‚РµСЂС‹
-	void setNext(ListItem* next); // РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЃР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚
-	void setKey(string key); // РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РєР»СЋС‡
-	void setData(string data); // РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Р·РЅР°С‡РµРЅРёРµ
-	// Р“РµС‚С‚РµСЂС‹
-	ListItem* getNext(); // РџРѕР»СѓС‡РёС‚СЊ СЃР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚
-	string getKey(); // РџРѕР»СѓС‡РёС‚СЊ РєР»СЋС‡
-	string getData(); // РџРѕР»СѓС‡РёС‚СЊ Р·РЅР°С‡РµРЅРёРµ
+	// Сеттеры
+	void setNext(ListItem* next); // Установить следующий элемент
+	void setKey(string key); // Установить ключ
+	void setData(string data); // Установить значение
+	// Геттеры
+	ListItem* getNext(); // Получить следующий элемент
+	string getKey(); // Получить ключ
+	string getData(); // Получить значение
 };
 
-// LinkedList РєР»Р°СЃСЃ
+// LinkedList класс
 class LinkedList {
 private:
-	int size; // Р Р°Р·РјРµСЂ СЃРїРёСЃРєР°
-	ListItem* first; // РџРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚
-	ListItem* last; // РџРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚
+	int size; // Размер списка
+	ListItem* first; // Первый элемент
+	ListItem* last; // Последний элемент
 public:
-	// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
+	// Конструкторы
 	LinkedList();
-	// РњРµС‚РѕРґС‹
-	void add(string data); // Р”РѕР±Р°РІР»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
-	void add(string key, string data); // Р”РѕР±Р°РІР»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° СЃ СЏРІРЅРѕ Р·Р°РґР°РЅРЅС‹Рј РєР»СЋС‡РѕРј
-	void remove(string key); // РЈРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РїРѕ РєР»СЋС‡Сѓ
-	ListItem* get(int index); // РџРѕР»СѓС‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РїРѕ РёРЅРґРµРєСЃСѓ
-	string find(string key); // РџРѕРёСЃРє СЌР»РµРјРµРЅС‚Р° РїРѕ РєР»СЋС‡Сѓ
-	int getSize(); // РџРѕР»СѓС‡РµРЅРёРµ СЂР°Р·РјРµСЂР° СЃРїРёСЃРєР°
-	string toString(); // РљРѕРЅРІРµСЂС‚Р°С†РёСЏ РІ СЃС‚СЂРѕРєСѓ
+	// Методы
+	void add(string key, string data); // Добавление элемента с явно заданным ключом
+	ListItem* get(int index); // Получение элемента по индексу
+	string find(string key); // Поиск элемента по ключу
+	int getSize(); // Получение размера списка
+	string toString(); // Конвертация в строку
 };
 
 #endif
