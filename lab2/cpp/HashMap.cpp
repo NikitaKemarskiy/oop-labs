@@ -58,12 +58,3 @@ void HashMap::add(string key, string value) { // Добавление, хеш на основе перед
 	arr[index].add(key, value);
 	checkLoad(); // Проверяем коэффициент заполнения HashMap
 }
-
-//string HashMap::find(string key) { // Поиск по ключу
-	//....
-<<<<<<< HEAD
-//
-// loadFactor = 
-=======
-}
->>>>>>> 32f4bbb27f0a9a119f4b6586230fb30aad21b5eb
