@@ -1,6 +1,6 @@
 #include "LinkedList.h"
+#include <iostream>
 #include <string>
-#include <stdexcept>
 
 using namespace std;
 
@@ -62,7 +62,9 @@ void LinkedList::add(string key, string data) { // Добавление элемента с явно за
 
 ListItem* LinkedList::get(int index) { // Получение элемента по индексу
 	if (index < 0 || index >= size) { // Неверный индекс
-		throw out_of_range("invalid index was passed."); // Кидаем исключение
+		cout << "invalid index was passed." << endl; // Выводим информацию об ошибке
+		cin.get();
+		exit(1);
 	}
 	ListItem* curr = first;
 	int currIndex = 0;
@@ -73,7 +75,9 @@ ListItem* LinkedList::get(int index) { // Получение элемента по индексу
 		currIndex++;
 		curr = curr->getNext();
 	}
-	throw out_of_range("invalid index was passed."); // Неверный индекс, кидаем исключение
+	cout << "invalid index was passed." << endl; // Выводим информацию об неверном индексе
+	cin.get();
+	exit(1);
 }
 
 string LinkedList::find(string key) { // Поиск элемента по ключу

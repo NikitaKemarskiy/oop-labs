@@ -19,9 +19,14 @@ int main() {
 	FillingHashMap(fin, Map);
 	cout << "Its done." << endl;
 	fin.close();
-	cout << "Input your word: "; getline(cin, word);
-	cout << Map.find(word) << endl;
-
+	while (true) {
+		cout << "Input your word or if you wanna end programm write 'q': "; getline(cin, word);
+		if (word == "q") {
+			break;
+		}
+		cout << Map.find(word) << endl;
+		cin.get();
+	}
 	cin.get();
 	return 0;
 }
