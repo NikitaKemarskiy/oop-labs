@@ -54,7 +54,7 @@ int HashMap::hash(string str) { // Нахождение хеша
 
 void HashMap::add(string key, string value) { // Добавление, хеш на основе переданного ключа
 	amount++; // Инкрементируем общее количество элементов
-	int index = hash(key) % size; // Находим позицию в массиве
+	int index = hash(key); // Находим позицию в массиве
 	arr[index].add(key, value);
 	checkLoad(); // Проверяем коэффициент заполнения HashMap
 }

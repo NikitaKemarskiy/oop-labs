@@ -16,13 +16,14 @@ istream& openFileINPUT(ifstream &fin, string name) {
 	return fin;
 }
 
-ostream& openFileOUTPUT(ofstream &fout, string name) {
-	fout.open(name);
-	if (!fout.is_open()) {
-		cout << "Error with opening file." << endl;
-		cin.get();
-		exit(1);
+string ParseWord(string value) {
+	string key = "";
+	for (int i = 0; i < value.length(); i++) {
+		if (value[i] == ';') {
+			break;
+		}
+		key += value[i];
 	}
-	cout << "Output file was opened." << endl;
-	return fout;
+	return key;
 }
+

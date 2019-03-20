@@ -1,6 +1,6 @@
 #include <fstream>
-#include <iostream>
-#include <string>
 
+using namespace std;
+
+string ParseWord(string);
 istream& openFileINPUT(ifstream &, string);
-ostream& openFileOUTPUT(ofstream &, string);
