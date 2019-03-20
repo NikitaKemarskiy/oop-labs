@@ -1,4 +1,5 @@
 #include "Functions.h"
+#include "HashMap.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -27,3 +28,14 @@ string ParseWord(string value) {
 	return key;
 }
 
+istream& FillingHashMap(ifstream &fin, HashMap &Map) {
+	string key = "";
+	while (!fin.eof()) {
+		string buff = "";
+		getline(fin, buff);
+		key = ParseWord(buff);
+		Map.add(key, buff);
+		cout << key << endl;
+	}
+	return fin;
+}

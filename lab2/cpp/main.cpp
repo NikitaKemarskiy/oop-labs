@@ -13,15 +13,9 @@ int main() {
 	string buff;
 	string key = "";
 	HashMap Map;
-	int count = 0;
 	openFileINPUT(fin, INPUT_FILE);
-	while (!fin.eof()) {
-		string buff = "";
-		getline(fin, buff);
-		key = ParseWord(buff);
-		//Map.add(key, buff);
-		cout << key << endl;
-	}
+	FillingHashMap(fin, Map);
+	fin.close();
 
 	cin.get();
 	return 0;

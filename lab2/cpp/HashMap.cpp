@@ -30,9 +30,9 @@ void HashMap::resize() { // Увеличение размера HashMap
 
 	for (int i = 0; i < size_; i++) {
 		LinkedList curr = arr_[i];
-		for (int j = 0; j < curr.getSize(); i++) {
+		for (int j = 0; j < curr.getSize(); j++) {
 			ListItem* currItem = curr.get(j);
-			arr->add(currItem->getKey(), currItem->getData());
+			this->add(currItem->getKey(), currItem->getData());
 		}
 	}
 }
