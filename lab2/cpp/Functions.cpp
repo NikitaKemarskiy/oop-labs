@@ -35,7 +35,6 @@ istream& FillingHashMap(ifstream &fin, HashMap &Map) {
 		getline(fin, buff);
 		key = ParseWord(buff);
 		Map.add(key, buff);
-		cout << key << endl;
 	}
 	return fin;
 }

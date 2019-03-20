@@ -76,7 +76,7 @@ ListItem* LinkedList::get(int index) { // Получение элемента по индексу
 	throw out_of_range("invalid index was passed."); // Неверный индекс, кидаем исключение
 }
 
-/*string LinkedList::find(string key) { // Поиск элемента по ключу
+string LinkedList::find(string key) { // Поиск элемента по ключу
 	ListItem* curr = first;
 	while (curr) { // Пока не дойдем до последнего элемента
 		if (curr->getKey() == key) { // Элемент найден
@@ -84,19 +84,9 @@ ListItem* LinkedList::get(int index) { // Получение элемента по индексу
 		}
 		curr = curr->getNext();
 	}
-}*/
+	return "Error with searching item.";
+}
 
 int LinkedList::getSize() { // Получение размера списка
 	return size;
-}
-
-string LinkedList::toString() { // Конвертация в строку
-	string str = "[";
-	ListItem* curr = first;
-	while (curr) { // Пока не дойдем до последнего элемента
-		str += "(" + curr->getKey() + "; " + curr->getData() + ")";
-		curr = curr->getNext();
-	}
-	str += "]";
-	return str;
 }

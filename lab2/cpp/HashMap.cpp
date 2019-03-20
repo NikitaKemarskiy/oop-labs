@@ -54,7 +54,16 @@ int HashMap::hash(string str) { // Нахождение хеша
 
 void HashMap::add(string key, string value) { // Добавление, хеш на основе переданного ключа
 	amount++; // Инкрементируем общее количество элементов
-	int index = hash(key); // Находим позицию в массиве
-	arr[index].add(key, value);
+	arr[hash(key)].add(key, value);
 	checkLoad(); // Проверяем коэффициент заполнения HashMap
+}
+
+string HashMap::find(string key)
+{
+	if (arr[hash(key)].getSize() == 0) {
+		cout << "Error, hash-function works bad." << endl;
+		cin.get();
+		exit(1);
+	}
+	return arr[hash(key)].find(key);
 }

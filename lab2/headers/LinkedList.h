@@ -39,7 +39,6 @@ public:
 	ListItem* get(int index); // Получение элемента по индексу
 	string find(string key); // Поиск элемента по ключу
 	int getSize(); // Получение размера списка
-	string toString(); // Конвертация в строку
 };
 
 #endif
