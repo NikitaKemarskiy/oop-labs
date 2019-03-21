@@ -20,7 +20,7 @@ int main() {
 	cout << "Its done." << endl;
 	fin.close();
 	while (true) {
-		cout << "Input your word (type 'q' to end the program): "; 
+		cout << "Input your word (type 'q' to end the program and press Enter): "; 
 		getline(cin, word);
 		if (word == "q" || word == "Q") {
 			break;
