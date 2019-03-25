@@ -20,12 +20,15 @@ int main() {
 	cout << "Its done." << endl;
 	fin.close();
 	while (true) {
-		cout << "Input your word (type 'q' to end the program and press Enter): "; 
+		cout << "Input your word (type 'q' to end the program and double press Enter): "; 
 		getline(cin, word);
 		if (word == "q" || word == "Q") {
 			break;
 		}
 		cout << Map.find(word) << endl;
+
+
+
 	}
 	cin.get();
 	return 0;
