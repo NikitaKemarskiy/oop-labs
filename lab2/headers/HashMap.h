@@ -23,6 +23,8 @@ public:
 	// Конструкторы
 	HashMap(); // По умолчанию
 	HashMap(int size); // С явной передачей размера
+	//Деструктор
+	~HashMap();
 	// Методы
 	void add(string key, string value); // Добавление, хеш на основе переданного ключа
 	string find(string key); // Поиск по ключу

@@ -20,6 +20,11 @@ HashMap::HashMap(int size) {
 	this->arr = new LinkedList[this->size];
 }
 
+// Деструктор
+HashMap::~HashMap() {
+	delete[] arr;
+}
+
 void HashMap::resize() { // Увеличение размера HashMap
 	int size_ = size; // Запоминаем старый размер
 	LinkedList* arr_ = arr; // Запоминаем текущий массив списков

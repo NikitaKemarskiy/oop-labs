@@ -42,10 +42,21 @@ string ListItem::getData() { // Получить значение
 }
 
 // LinkedList класс
+// Конструктор
 LinkedList::LinkedList() {
 	size = 0;
 	first = nullptr;
 	last = nullptr;
+}
+
+// Деструктор
+LinkedList::~LinkedList() {
+	ListItem *newEl = first;
+	while (newEl) {
+		newEl = first;
+		first = first->getNext();
+		delete newEl;
+	}
 }
 
 void LinkedList::add(string key, string data) { // Добавление элемента с явно заданным ключом

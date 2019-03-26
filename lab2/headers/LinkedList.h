@@ -34,6 +34,8 @@ private:
 public:
 	// Конструкторы
 	LinkedList();
+	// Деструктор
+	~LinkedList();
 	// Методы
 	void add(string key, string data); // Добавление элемента с явно заданным ключом
 	ListItem* get(int index); // Получение элемента по индексу
