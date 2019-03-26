@@ -20,7 +20,7 @@ int main() {
 	cout << "Its done." << endl;
 	fin.close();
 	while (true) {
-		cout << "Input your word (type 'q' to end the program): "; 
+		cout << "Input your word (type 'q' to end the program and double press Enter): "; 
 		getline(cin, word);
 		for (int i = 0; i < word.length(); i++) {
 			word[i] = toupper(word[i]);

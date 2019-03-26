@@ -33,8 +33,10 @@ void HashMap::resize() { // Увеличение размера HashMap
 		for (int j = 0; j < curr.getSize(); j++) {
 			ListItem* currItem = curr.get(j);
 			this->add(currItem->getKey(), currItem->getData());
+			delete currItem;
 		}
 	}
+	delete[] arr_;
 }
 
 void HashMap::checkLoad() { // Проверка загрузки HashMap
