@@ -28,7 +28,7 @@ public:
 // LinkedList класс
 class LinkedList {
 private:
-	int size; // Размер списка
+	int Size; // Размер списка
 	ListItem* first; // Первый элемент
 	ListItem* last; // Последний элемент
 public:

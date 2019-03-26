@@ -44,23 +44,26 @@ string ListItem::getData() { // Получить значение
 // LinkedList класс
 // Конструктор
 LinkedList::LinkedList() {
-	size = 0;
+	Size = 0;
 	first = nullptr;
 	last = nullptr;
 }
 
 // Деструктор
 LinkedList::~LinkedList() {
-	ListItem *newEl = first;
+	ListItem *newEl = last;
 	while (newEl) {
-		newEl = first;
-		first = first->getNext();
+		newEl = last;
+		if (!newEl) {
+			break;
+		}
+		last = last->getNext();
 		delete newEl;
 	}
 }
 
 void LinkedList::add(string key, string data) { // Добавление элемента с явно заданным ключом
-	size++; // Инкрементируем размер
+	Size++; // Инкрементируем размер
 	ListItem* last_ = last;
 	last = new ListItem(key, data);
 	if (!last_) { // Список был пуст
@@ -72,7 +75,7 @@ void LinkedList::add(string key, string data) { // Добавление элемента с явно за
 }
 
 ListItem* LinkedList::get(int index) { // Получение элемента по индексу
-	if (index < 0 || index >= size) { // Неверный индекс
+	if (index < 0 || index >= Size) { // Неверный индекс
 		cout << "invalid index was passed." << endl; // Выводим информацию об ошибке
 		cin.get();
 		exit(1);
@@ -103,5 +106,5 @@ string LinkedList::find(string key) { // Поиск элемента по ключу
 }
 
 int LinkedList::getSize() { // Получение размера списка
-	return size;
+	return Size;
 }
