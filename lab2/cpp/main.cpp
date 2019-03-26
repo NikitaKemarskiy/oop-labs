@@ -22,11 +22,14 @@ int main() {
 	while (true) {
 		cout << "Input your word (type 'q' to end the program): "; 
 		getline(cin, word);
-		if (word == "q" || word == "Q") {
+		for (int i = 0; i < word.length(); i++) {
+			word[i] = toupper(word[i]);
+		}
+		if (word == "Q") {
 			break;
 		}
-		cout << Map.find(word) << endl;
+		cout << Map.find(word) << endl << endl;
 	}
-	cin.get();
+	
 	return 0;
 }
