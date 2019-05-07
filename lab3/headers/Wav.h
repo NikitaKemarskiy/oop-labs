@@ -14,6 +14,10 @@ private:
     Data* data;
 public:
     Wav(char* buff, int size);
+
+    void build(char* buff);
+
+    int resize(double factor);
 };
 
 

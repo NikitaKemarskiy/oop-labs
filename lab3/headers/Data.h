@@ -11,9 +11,14 @@ private:
     char* subchunk2Id;
     char* subchunk2Size;
     char* data;
+    int size;
     const static int offset = 36;
 public:
     Data(char* buff, int size);
+
+    void build(char* buff);
+
+    int resize(double factor);
 };
 
 

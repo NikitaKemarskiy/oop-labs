@@ -19,6 +19,8 @@ private:
     const static int offset = 12;
 public:
     Fmt(char* buff, int size);
+
+    void build(char* buff);
 };
 
 

@@ -28,3 +28,19 @@ Fmt::Fmt(char* buff, int size) {
         bitsPerSample[i] = buff[i + offset + 22];
     }
 }
+
+void Fmt::build(char* buff) {
+    for (int i = 0; i < 4; i++) {
+        buff[i + offset] = subchunk1Id[i];
+        buff[i + offset + 4] = subchunk1Size[i];
+        buff[i + offset + 12] = sampleRate[i];
+        buff[i + offset + 16] = byteRate[i];
+    }
+
+    for (int i = 0; i < 2; i++) {
+        buff[i + offset + 8] = audioFormat[i];
+        buff[i + offset + 10] = numChannels[i];
+        buff[i + offset + 20] = blockAlign[i];
+        buff[i + offset + 22] = bitsPerSample[i];
+    }
+}
