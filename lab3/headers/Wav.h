@@ -13,9 +13,9 @@ private:
     Fmt* fmt;
     Data* data;
 public:
-    Wav(char* buff, int size);
+    Wav(unsigned char* buff, int size);
 
-    void build(char* buff);
+    void build(unsigned char* buff);
 
     int resize(double factor);
 };

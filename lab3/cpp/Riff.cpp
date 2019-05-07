@@ -4,10 +4,10 @@
 
 #include "../headers/Riff.h"
 
-Riff::Riff(char* buff, int size) {
-    chunkId = new char[4];
-    chunkSize = new char[4];
-    format = new char[4];
+Riff::Riff(unsigned char* buff, int size) {
+    chunkId = new unsigned char[4];
+    chunkSize = new unsigned char[4];
+    format = new unsigned char[4];
     this->size = size;
 
     for (int i = 0; i < 4; i++) {
@@ -20,7 +20,7 @@ Riff::Riff(char* buff, int size) {
 };
 
 void Riff::build(string path) {
-    char* buff = new char[size];
+    unsigned char* buff = new unsigned char[size];
 
     for (int i = 0; i < 4; i++) {
         buff[i] = chunkId[i];

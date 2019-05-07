@@ -8,15 +8,15 @@
 
 class Data {
 private:
-    char* subchunk2Id;
-    char* subchunk2Size;
-    char* data;
+    unsigned char* subchunk2Id;
+    unsigned char* subchunk2Size;
+    unsigned char* data;
     int size;
     const static int offset = 36;
 public:
-    Data(char* buff, int size);
+    Data(unsigned char* buff, int size);
 
-    void build(char* buff);
+    void build(unsigned char* buff);
 
     int resize(double factor);
 };

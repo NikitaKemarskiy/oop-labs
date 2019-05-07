@@ -4,15 +4,15 @@
 
 #include "../headers/Fmt.h"
 
-Fmt::Fmt(char* buff, int size) {
-    subchunk1Id = new char[4];
-    subchunk1Size = new char[4];
-    audioFormat = new char[2];
-    numChannels = new char[2];
-    sampleRate = new char[4];
-    byteRate = new char[4];
-    blockAlign = new char[2];
-    bitsPerSample = new char[2];
+Fmt::Fmt(unsigned char* buff, int size) {
+    subchunk1Id = new unsigned char[4];
+    subchunk1Size = new unsigned char[4];
+    audioFormat = new unsigned char[2];
+    numChannels = new unsigned char[2];
+    sampleRate = new unsigned char[4];
+    byteRate = new unsigned char[4];
+    blockAlign = new unsigned char[2];
+    bitsPerSample = new unsigned char[2];
 
     for (int i = 0; i < 4; i++) {
         subchunk1Id[i] = buff[i + offset];
@@ -29,7 +29,7 @@ Fmt::Fmt(char* buff, int size) {
     }
 }
 
-void Fmt::build(char* buff) {
+void Fmt::build(unsigned char* buff) {
     for (int i = 0; i < 4; i++) {
         buff[i + offset] = subchunk1Id[i];
         buff[i + offset + 4] = subchunk1Size[i];

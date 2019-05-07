@@ -4,10 +4,10 @@
 
 #include "../headers/Data.h"
 
-Data::Data(char* buff, int size) {
-    subchunk2Id = new char[4];
-    subchunk2Size = new char[4];
-    data = new char[size - 44];
+Data::Data(unsigned char* buff, int size) {
+    subchunk2Id = new unsigned char[4];
+    subchunk2Size = new unsigned char[4];
+    data = new unsigned char[size - 44];
     this->size = size;
 
     for (int i = 0; i < 4; i++) {
@@ -20,7 +20,7 @@ Data::Data(char* buff, int size) {
     }
 }
 
-void Data::build(char* buff) {
+void Data::build(unsigned char* buff) {
     for (int i = 0; i < 4; i++) {
         buff[i + offset] = subchunk2Id[i];
         buff[i + offset + 4] = subchunk2Size[i];

@@ -12,13 +12,13 @@ using namespace std;
 
 class Riff {
 private:
-    char* chunkId;
-    char* chunkSize;
-    char* format;
+    unsigned char* chunkId;
+    unsigned char* chunkSize;
+    unsigned char* format;
     int size;
     Wav* wave;
 public:
-    Riff(char* buff, int size); // Constructor
+    Riff(unsigned char* buff, int size); // Constructor
 
     void build(string path); // Method that builds new file
 

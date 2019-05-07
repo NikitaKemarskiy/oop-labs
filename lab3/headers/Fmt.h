@@ -8,19 +8,19 @@
 
 class Fmt {
 private:
-    char* subchunk1Id;
-    char* subchunk1Size;
-    char* audioFormat;
-    char* numChannels;
-    char* sampleRate;
-    char* byteRate;
-    char* blockAlign;
-    char* bitsPerSample;
+    unsigned char* subchunk1Id;
+    unsigned char* subchunk1Size;
+    unsigned char* audioFormat;
+    unsigned char* numChannels;
+    unsigned char* sampleRate;
+    unsigned char* byteRate;
+    unsigned char* blockAlign;
+    unsigned char* bitsPerSample;
     const static int offset = 12;
 public:
-    Fmt(char* buff, int size);
+    Fmt(unsigned char* buff, int size);
 
-    void build(char* buff);
+    void build(unsigned char* buff);
 };
 
 
