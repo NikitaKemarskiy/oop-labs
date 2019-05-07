@@ -15,6 +15,8 @@ private:
 public:
     Wav(unsigned char* buff, int size);
 
+    ~Wav();
+
     void build(unsigned char* buff);
 
     int resize(double factor);

@@ -3,6 +3,7 @@
 //
 
 #include "../headers/Riff.h"
+#include "../headers/Functions.h"
 
 Riff::Riff(unsigned char* buff, int size) {
     chunkId = new unsigned char[4];
@@ -19,7 +20,14 @@ Riff::Riff(unsigned char* buff, int size) {
     wave = new Wav(buff, size);
 };
 
-void Riff::build(string path) {
+Riff::~Riff(){
+    delete[] chunkId;
+    delete[] chunkSize;
+    delete[] format;
+    delete wave;
+}
+
+unsigned char * Riff::build() {
     unsigned char* buff = new unsigned char[size];
 
     for (int i = 0; i < 4; i++) {
@@ -29,9 +37,7 @@ void Riff::build(string path) {
     }
 
     wave->build(buff);
-
-    // buff - массив с готовыми данными
-    // запись в файл, переданный аргументом string path
+    return buff;
 }
 
 void Riff::resize(double factor) {

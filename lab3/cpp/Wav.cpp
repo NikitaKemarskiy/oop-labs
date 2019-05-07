@@ -9,6 +9,11 @@ Wav::Wav(unsigned char* buff, int size) {
     data = new Data(buff, size);
 }
 
+Wav::~Wav() {
+    delete fmt;
+    delete data;
+}
+
 void Wav::build(unsigned char* buff) {
     fmt->build(buff);
     data->build(buff);

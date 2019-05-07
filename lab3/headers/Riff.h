@@ -19,9 +19,9 @@ private:
     Wav* wave;
 public:
     Riff(unsigned char* buff, int size); // Constructor
-
-    void build(string path); // Method that builds new file
-
+    ~Riff(); // Destructor
+    unsigned char * build(); // Method that builds new file
+    int getSize() { return size; }
     void resize(double factor);
 };
 

@@ -29,6 +29,17 @@ Fmt::Fmt(unsigned char* buff, int size) {
     }
 }
 
+Fmt::~Fmt() {
+    delete[] subchunk1Id;
+    delete[] subchunk1Size;
+    delete[] audioFormat;
+    delete[] numChannels;
+    delete[] sampleRate;
+    delete[] byteRate;
+    delete[] blockAlign;
+    delete[] bitsPerSample;
+}
+
 void Fmt::build(unsigned char* buff) {
     for (int i = 0; i < 4; i++) {
         buff[i + offset] = subchunk1Id[i];

@@ -16,6 +16,8 @@ private:
 public:
     Data(unsigned char* buff, int size);
 
+    ~Data();
+
     void build(unsigned char* buff);
 
     int resize(double factor);

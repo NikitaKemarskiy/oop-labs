@@ -20,6 +20,12 @@ Data::Data(unsigned char* buff, int size) {
     }
 }
 
+Data::~Data() {
+    delete[] subchunk2Id;
+    delete[] subchunk2Size;
+    delete[] data;
+}
+
 void Data::build(unsigned char* buff) {
     for (int i = 0; i < 4; i++) {
         buff[i + offset] = subchunk2Id[i];
@@ -33,4 +39,5 @@ void Data::build(unsigned char* buff) {
 
 int Data::resize(double factor) {
     //...
+    return 0;
 }

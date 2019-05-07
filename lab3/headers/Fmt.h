@@ -19,7 +19,7 @@ private:
     const static int offset = 12;
 public:
     Fmt(unsigned char* buff, int size);
-
+    ~Fmt();
     void build(unsigned char* buff);
 };
 
