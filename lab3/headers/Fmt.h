@@ -7,7 +7,18 @@
 
 
 class Fmt {
-
+private:
+    char* subchunk1Id;
+    char* subchunk1Size;
+    char* audioFormat;
+    char* numChannels;
+    char* sampleRate;
+    char* byteRate;
+    char* blockAlign;
+    char* bitsPerSample;
+    const static int offset = 12;
+public:
+    Fmt(char* buff, int size);
 };
 
 

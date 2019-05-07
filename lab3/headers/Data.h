@@ -7,7 +7,13 @@
 
 
 class Data {
-
+private:
+    char* subchunk2Id;
+    char* subchunk2Size;
+    char* data;
+    const static int offset = 36;
+public:
+    Data(char* buff, int size);
 };
 
 
