@@ -15,7 +15,7 @@ Data::Data(unsigned char* buff, int size) {
         subchunk2Size[i] = buff[i + offset + 4];
     }
 
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size - 44; i++) {
         data[i] = buff[i + offset + 8];
     }
 }
@@ -32,7 +32,7 @@ void Data::build(unsigned char* buff) {
         buff[i + offset + 4] = subchunk2Size[i];
     }
 
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size - 44; i++) {
         buff[i + offset + 8] = data[i];
     }
 }

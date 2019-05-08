@@ -8,10 +8,10 @@
 
 using namespace std;
 
-istream &openFileINPUT(ifstream&, string);
-istream& sizeOfFile(ifstream&, int &);
-istream& readFileINPUT(ifstream&, unsigned char *);
-ostream& openFileOUTPUT(ofstream&, string);
-ostream& writeFileOUTPUT(ofstream&, Riff&, string);
+void openFileINPUT(ifstream&, string);
+void openFileOUTPUT(ofstream&, string);
+void readFile(ifstream&, unsigned char *);
+void writeFile(ofstream&, Riff&, string);
+void sizeOfFile(ifstream&, int &);
 
 #endif //LAB3_FUNCTIONS_H
