@@ -55,3 +55,23 @@ void Fmt::build(unsigned char* buff) {
         buff[i + offset + 22] = bitsPerSample[i];
     }
 }
+
+unsigned char* Fmt::getNumChannels() {
+    return numChannels;
+}
+
+unsigned char* Fmt::getSampleRate() {
+    return sampleRate;
+}
+
+unsigned char* Fmt::getByteRate() {
+    return byteRate;
+}
+
+unsigned char* Fmt::getBlockAlign() {
+    return blockAlign;
+}
+
+unsigned char* Fmt::getBitsPerSample() {
+    return bitsPerSample;
+}

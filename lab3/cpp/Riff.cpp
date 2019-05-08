@@ -27,7 +27,7 @@ Riff::~Riff(){
     delete wave;
 }
 
-unsigned char * Riff::build() {
+unsigned char* Riff::build() {
     unsigned char* buff = new unsigned char[size];
 
     for (int i = 0; i < 4; i++) {
@@ -36,10 +36,14 @@ unsigned char * Riff::build() {
         buff[i + 8] = format[i];
     }
 
+    cout << "Size: " << size << ", chunkSize: " << (unsigned) littleEndianToInt(chunkSize);
+
     wave->build(buff);
+
     return buff;
 }
 
 void Riff::resize(double factor) {
     size = wave->resize(factor);
+    chunkSize = intToLittleEndian(size);
 }

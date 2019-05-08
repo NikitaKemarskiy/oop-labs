@@ -6,7 +6,7 @@
 
 Wav::Wav(unsigned char* buff, int size) {
     fmt = new Fmt(buff, size);
-    data = new Data(buff, size);
+    data = new Data(buff, size, fmt);
 }
 
 Wav::~Wav() {

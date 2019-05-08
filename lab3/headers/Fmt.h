@@ -21,6 +21,11 @@ public:
     Fmt(unsigned char* buff, int size);
     ~Fmt();
     void build(unsigned char* buff);
+    unsigned char* getNumChannels();
+    unsigned char* getSampleRate();
+    unsigned char* getByteRate();
+    unsigned char* getBlockAlign();
+    unsigned char* getBitsPerSample();
 };
 
 
