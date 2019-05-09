@@ -66,8 +66,7 @@ int Data::resize(double factor_) {
         n = coef - 1;
     }
     delete[] data;
-    delete[] subchunk2Size;
-    data = buff;
+    delete[] subchunk2Size;data = buff;
 
     size -= subchunk2SizeInt;
     subchunk2SizeInt *= factor;
