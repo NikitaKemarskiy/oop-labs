@@ -23,19 +23,15 @@ int main() {
 
     readFile(fin, bytesOfFile); // Fill the array
 
-    for (int i = 0; i < 100; i++) {
-        cout << (int) bytesOfFile[i] << " ";
-    }
-    cout << endl;
-
     Riff riff(bytesOfFile, size); // New Riff instance
 
-    riff.resize(1.5);
+    riff.resize(2);
 
     openFileOUTPUT(fout, OUTPUT_FILE); // Open output stream
     writeFile(fout, riff, OUTPUT_FILE); // Write bytes into output file
 
-    delete[] bytesOfFile;
+    fin.close();
+    fout.close();
 
     return 0;
 }

@@ -36,8 +36,6 @@ unsigned char* Riff::build() {
         buff[i + 8] = format[i];
     }
 
-    cout << "Size: " << size << ", chunkSize: " << (unsigned) littleEndianToInt(chunkSize);
-
     wave->build(buff);
 
     return buff;

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cmath>
 
 using namespace std;
 
@@ -53,17 +54,16 @@ void sizeOfFile(ifstream& fin, int& count){
 unsigned char* intToLittleEndian(int data) {
     unsigned char* bytes = new unsigned char[4];
     bytes[0] = (char) data;
-    bytes[1] = (char) (((uint)data >> 8) & 0xFF);
-    bytes[2] = (char) (((uint)data >> 16) & 0xFF);
-    bytes[3] = (char) (((uint)data >> 24) & 0xFF);
+    bytes[1] = (char) (((unsigned int)data >> 8) & 0xFF);
+    bytes[2] = (char) (((unsigned int)data >> 16) & 0xFF);
+    bytes[3] = (char) (((unsigned int)data >> 24) & 0xFF);
     return bytes;
 }
 
-int littleEndianToInt(unsigned char* bytes) {
+int littleEndianToInt(unsigned char* bytes, int size) {
     int data = 0;
-    data += (int) bytes[0];
-    data += (int) bytes[1] * 256;
-    data += (int) bytes[2] * 256 * 256;
-    data += (int) bytes[3] * 256 * 256 * 256;
+    for(int i = 0; i < size; i++) {
+        data += (int) bytes[i] * pow(256, i);
+    }
     return data;
 }
