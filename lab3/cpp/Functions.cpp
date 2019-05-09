@@ -53,9 +53,9 @@ void sizeOfFile(ifstream& fin, int& count){
 unsigned char* intToLittleEndian(int data) {
     unsigned char* bytes = new unsigned char[4];
     bytes[0] = (char) data;
-    bytes[1] = (char) (((uint)data >> 8) & 0xFF);
-    bytes[2] = (char) (((uint)data >> 16) & 0xFF);
-    bytes[3] = (char) (((uint)data >> 24) & 0xFF);
+    bytes[1] = (char) (((unsigned int) data >> 8) & 0xFF);
+    bytes[2] = (char) (((unsigned int) data >> 16) & 0xFF);
+    bytes[3] = (char) (((unsigned int) data >> 24) & 0xFF);
     return bytes;
 }
 

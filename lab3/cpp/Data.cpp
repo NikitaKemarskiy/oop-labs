@@ -59,8 +59,6 @@ int Data::resize(double factor_) {
     int coef = 0;
     for (int i = 0; i < numChannels; i++) { // For every channel
         for (int j = 0; j < delim; j++) {
-            // data[j + delim * i] - текущий байт в текущем канале
-            // buff[j + delim * i + delim * n]
             coef = n;
             for (int k = 0; k < factor; k++) {
                 buff[j + delim * i + delim * coef++] = data[j + delim * i];
@@ -69,36 +67,15 @@ int Data::resize(double factor_) {
         n = coef - 1;
     }
 
+    delete[] data;
+    delete[] subchunk2Size;
+
     data = buff;
 
     size -= subchunk2SizeInt;
     subchunk2SizeInt *= factor;
     subchunk2Size = intToLittleEndian(subchunk2SizeInt);
     size += subchunk2SizeInt; // New data array size
-
-    /*int delim = (size - 44) / numChannels;
-
-    cout << "size: " << size - 44 << " size: " << littleEndianToInt(subchunk2Size) << endl;
-    cout << "delim: " << delim << endl;
-
-    int n = 0;
-    int coef = 0;
-    for (int i = 0; i < numChannels; i++) { // For every channel
-        for (int j = 0; j < delim; j++) {
-            // data[j + delim * i] - текущий байт в текущем канале
-            // buff[j + delim * i + delim * n]
-            coef = n;
-            for (int k = 0; k < factor; k++) {
-                buff[j + delim * i + delim * coef] = data[j + delim * i];
-                coef++;
-            }
-        }
-        n = coef;
-    }
-
-    size = (size - 44) * factor + 44; // New Riff size
-    subchunk2Size = intToLittleEndian(size - 44); // New data array size
-     */
 
     return size;
 }
