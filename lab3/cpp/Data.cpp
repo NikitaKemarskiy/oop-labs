@@ -40,38 +40,55 @@ void Data::build(unsigned char* buff) {
 int Data::resize(double factor_) {
     int factor = (int) factor_; // Целочисленный коэффициент
 
-    //unsigned char* buff = new unsigned char[(int)(subchunk2SizeInt * factor)]; // New data array
+    unsigned int bitsPerSample = littleEndianToInt(fmt->getBitsPerSample(), 2); // Bits per sample
+    unsigned int bytePerSample = bitsPerSample / 8;
     unsigned char* buff = new unsigned char[subchunk2SizeInt * factor]; // New data array
 
-    unsigned int numChannels = littleEndianToInt(fmt->getNumChannels(), 2); // Number of channels
-    /*unsigned int sampleRate = littleEndianToInt(fmt->getSampleRate()); // Sample rate
-    unsigned int byteRate = littleEndianToInt(fmt->getByteRate()); // Byte rate
-    unsigned int blockAlign = littleEndianToInt(fmt->getBlockAlign()); // Block align
-    unsigned int bitsPerSample = littleEndianToInt(fmt->getBitsPerSample()); // Bits per sample
-    */
+    int index = 0;
+    unsigned char* sample1 = new unsigned char[bytePerSample];
+    unsigned char* sample2 = nullptr;
 
-    //cout << numChannels << endl;
-
-    int delim = subchunk2SizeInt / numChannels;
-
-    int n = 0;
-    int coef = 0;
-    for (int i = 0; i < numChannels; i++) { // For every channel
-        for (int j = 0; j < delim; j++) {
-            coef = n;
-            for (int k = 0; k < factor; k++) {
-                buff[j + delim * i + delim * coef++] = data[j + delim * i];
-            }
-        }
-        n = coef - 1;
+    for (int i = 0; i < bytePerSample; i++) {
+        sample1[i] = data[i];
     }
-    delete[] data;
-    delete[] subchunk2Size;data = buff;
 
-    size -= subchunk2SizeInt;
-    subchunk2SizeInt *= factor;
+    for (int i = 0; i < subchunk2SizeInt - bytePerSample; i += bytePerSample) {
+        sample1 = sample2 == nullptr ? sample1 : sample2;
+        sample2 = new unsigned char[bytePerSample];
+        for (int j = 0; j < bytePerSample; j++) {
+            sample2[j] = data[i + j + bytePerSample];
+        }
+        int sample1Int = littleEndianToInt(sample1, bytePerSample);
+        int sample2Int = littleEndianToInt(sample2, bytePerSample);
+        int diff = (sample2Int - sample1Int) / factor;
+
+        cout << "sample 1: " << sample1Int << "; sample 2: " << sample2Int << "; diff: " << diff << endl;
+
+        for (int j = 0; j < factor; j++) {
+            unsigned char* sample = numToLittleEndian(sample1Int + diff * j, bytePerSample);
+            for (int k = 0; k < bytePerSample; k++) {
+                buff[index++] = sample[k];
+            }
+            delete[] sample;
+        }
+        delete[] sample1;
+    }
+    for (int i = 0; i < factor; i++) {
+        for (int k = 0; k < bytePerSample; k++) {
+            buff[index++] = sample2[k];
+        }
+    }
+    delete[] sample2;
+
+    delete[] data;
+    delete[] subchunk2Size;
+
+    data = buff;
+
+    size -= subchunk2SizeInt; // Extract old data array size from the whole wav size
+    subchunk2SizeInt *= factor; // Change data array size value
     subchunk2Size = intToLittleEndian(subchunk2SizeInt);
-    size += subchunk2SizeInt; // New data array size
+    size += subchunk2SizeInt; // New wav file size
 
     return size;
 }

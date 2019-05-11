@@ -3,6 +3,7 @@
 //
 
 #include "../headers/Fmt.h"
+#include "../headers/Functions.h"
 
 Fmt::Fmt(unsigned char* buff, int size) {
     subchunk1Id = new unsigned char[4];

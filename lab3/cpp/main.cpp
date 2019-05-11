@@ -10,6 +10,13 @@
 using namespace std;
 
 int main() {
+    // 2 байта от -32768 до 32767
+    /*unsigned char* buff = numToLittleEndian(32768, 2);
+
+    cout << (int) buff[0] << " " << (int) buff[1] << endl;
+
+    cout << littleEndianToInt(buff, 2);*/
+
     ifstream fin; // Input file stream
     ofstream fout; // Output file stream
 
@@ -25,7 +32,7 @@ int main() {
 
     Riff riff(bytesOfFile, size); // New Riff instance
 
-    riff.resize(2);
+    //riff.resize(2);
 
     openFileOUTPUT(fout, OUTPUT_FILE); // Open output stream
     writeFile(fout, riff, OUTPUT_FILE); // Write bytes into output file

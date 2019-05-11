@@ -14,6 +14,7 @@ void readFile(ifstream&, unsigned char *);
 void writeFile(ofstream&, Riff&, string);
 void sizeOfFile(ifstream&, int &);
 unsigned char* intToLittleEndian(int data);
+unsigned char* numToLittleEndian(int data, int size);
 int littleEndianToInt(unsigned char* data, int size);
 
 #endif //LAB3_FUNCTIONS_H
