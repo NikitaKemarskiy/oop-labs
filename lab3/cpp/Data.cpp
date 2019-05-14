@@ -45,7 +45,7 @@ int Data::resize(double factor_) {
     unsigned char* buff = new unsigned char[subchunk2SizeInt * factor]; // New data array
 
     int index = 0;
-    unsigned char* sample1 = new unsigned char[bytePerSample];
+    /*unsigned char* sample1 = new unsigned char[bytePerSample];
     unsigned char* sample2 = nullptr;
 
     for (int i = 0; i < bytePerSample; i++) {
@@ -78,7 +78,15 @@ int Data::resize(double factor_) {
             buff[index++] = sample2[k];
         }
     }
-    delete[] sample2;
+    delete[] sample2;*/
+
+    for (int i = 0; i < subchunk2SizeInt; i += bytePerSample) {
+        for (int k = 0; k < factor; k++) {
+            for (int j = 0; j < bytePerSample; j++) {
+                buff[index++] = data[i + j];
+            }
+        }
+    }
 
     delete[] data;
     delete[] subchunk2Size;
