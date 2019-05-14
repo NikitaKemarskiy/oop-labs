@@ -10,14 +10,11 @@ private:
     Data* data;
 public:
     Wav(unsigned char* buff, int size);
-
     ~Wav();
-
     void build(unsigned char* buff);
-
     int resize(double factor);
-
     int reduce(double);
+    void reverse();
 };
 
 

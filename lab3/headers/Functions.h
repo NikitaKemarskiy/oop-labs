@@ -16,6 +16,6 @@ void sizeOfFile(ifstream&, int &);
 unsigned char* intToLittleEndian(int data);
 unsigned char* numToLittleEndian(int data, int size);
 int littleEndianToInt(unsigned char* data, int size);
-void changeAudioFile(string number, Riff &riff, int &reduce, int &magnification);
+void changeAudioFile(string number, Riff &riff);
 
 #endif //LAB3_FUNCTIONS_H

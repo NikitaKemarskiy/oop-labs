@@ -79,15 +79,15 @@ int littleEndianToInt(unsigned char* bytes, int size) {
     return data;
 }
 
-void changeAudioFile(string number, Riff &riff, int &reduce, int &magnification){
+void changeAudioFile(string number, Riff &riff){
     int numberAfterDot;
     for(int i = 0; i < number.length(); i++){
         if(number[i] == '.') {
             numberAfterDot = number.length() - i - 1;
         }
     }
-    magnification = stod(number) * pow(10, numberAfterDot);
-    reduce = pow(10, numberAfterDot);
+    int magnification = stod(number) * pow(10, numberAfterDot);
+    int reduce = pow(10, numberAfterDot);
     int tempRed = reduce;
     int tempMag = magnification;
     if(stod(number) == 1) return;

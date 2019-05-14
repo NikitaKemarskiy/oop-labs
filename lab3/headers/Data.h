@@ -23,7 +23,9 @@ public:
 
     int resize(double factor);
 
-    int reduce(double);
+    int reduce(double factor);
+
+    void reverse();
 };
 
 

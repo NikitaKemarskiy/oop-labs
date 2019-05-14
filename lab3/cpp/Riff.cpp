@@ -46,3 +46,7 @@ void Riff::reduce(double factor){
     size = wave->reduce(factor);
     chunkSize = intToLittleEndian(size);
 }
+
+void Riff::reverse() {
+    wave->reverse();
+}

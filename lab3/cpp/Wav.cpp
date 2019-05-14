@@ -22,3 +22,7 @@ int Wav::resize(double factor) {
 int Wav::reduce(double factor){
     return data->reduce(factor);
 }
+
+void Wav::reverse() {
+    data->reverse();
+}

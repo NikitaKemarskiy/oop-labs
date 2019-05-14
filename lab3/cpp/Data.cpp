@@ -99,3 +99,21 @@ int Data::reduce(double _factor) {
 
     return size;
 }
+
+void Data::reverse() {
+    unsigned int bitsPerSample = littleEndianToInt(fmt->getBitsPerSample(), 2); // Bits per sample
+    unsigned int bytePerSample = bitsPerSample / 8;
+    unsigned char* buff = new unsigned char[subchunk2SizeInt]; // New data array
+
+    int index = 0;
+
+    for (int i = subchunk2SizeInt; i >= bytePerSample; i -= bytePerSample) {
+        for (int j = 0; j < bytePerSample; j++) {
+            buff[index++] = data[i - bytePerSample + j];
+        }
+    }
+
+    delete[] data;
+
+    data = buff;
+}

@@ -20,6 +20,7 @@ public:
     int getSize() { return size; }
     void resize(double factor);
     void reduce(double factor);
+    void reverse();
 };
 
 

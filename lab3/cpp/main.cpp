@@ -12,7 +12,6 @@ using namespace std;
 int main() {
     ifstream fin; // Input file stream
     ofstream fout; // Output file stream
-    int reduction, magnification;
     string number = "";
 
     unsigned char* bytesOfFile; // Array for bytes in a file
@@ -27,8 +26,8 @@ int main() {
 
     Riff riff(bytesOfFile, size); // New Riff instance
 
-    cout << "Input number: "; cin >> number;
-    changeAudioFile(number, riff, reduction, magnification);
+    сout << "Input number: "; cin >> number;
+    changeAudioFile(number, riff);
 
     openFileOUTPUT(fout, OUTPUT_FILE); // Open output stream
     writeFile(fout, riff, OUTPUT_FILE); // Write bytes into output file
