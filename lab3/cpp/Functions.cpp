@@ -79,8 +79,15 @@ int littleEndianToInt(unsigned char* bytes, int size) {
     return data;
 }
 
-void changeAudioFile(string number, Riff &riff){
+void changeAudioFile(string tempNumber, Riff &riff){
     int numberAfterDot;
+    if(stod(tempNumber) < 0){
+        riff.reverse();
+    }
+    string number;
+    for(int i = 1; i < tempNumber.length(); i++){
+        number[i] = tempNumber[i];
+    }
     for(int i = 0; i < number.length(); i++){
         if(number[i] == '.') {
             numberAfterDot = number.length() - i - 1;
