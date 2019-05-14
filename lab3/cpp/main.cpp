@@ -26,7 +26,7 @@ int main() {
 
     Riff riff(bytesOfFile, size); // New Riff instance
 
-    сout << "Input number: "; cin >> number;
+    cout << "Input number: "; cin >> number;
     changeAudioFile(number, riff);
 
     openFileOUTPUT(fout, OUTPUT_FILE); // Open output stream

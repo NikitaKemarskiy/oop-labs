@@ -81,14 +81,17 @@ int littleEndianToInt(unsigned char* bytes, int size) {
 
 void changeAudioFile(string tempNumber, Riff &riff){
     int numberAfterDot;
-    if(stod(tempNumber) < 0){
-        riff.reverse();
-    }
     string number;
-    for(int i = 1; i < tempNumber.length(); i++){
-        number[i] = tempNumber[i];
+    if (stod(tempNumber) < 0.0) {
+        riff.reverse();
+        number = "";
+        for (int i = 1; i < tempNumber.length(); i++) {
+            number += tempNumber[i];
+        }
+    } else {
+        number = tempNumber;
     }
-    for(int i = 0; i < number.length(); i++){
+    for (int i = 0; i < number.length(); i++) {
         if(number[i] == '.') {
             numberAfterDot = number.length() - i - 1;
         }
@@ -97,9 +100,9 @@ void changeAudioFile(string tempNumber, Riff &riff){
     int reduce = pow(10, numberAfterDot);
     int tempRed = reduce;
     int tempMag = magnification;
-    if(stod(number) == 1) return;
-    if(stod(number) > 1){
-        while(tempRed){
+    if (stod(number) == 1) { return; }
+    if (stod(number) > 1) {
+        while (tempRed) {
             int temp = tempRed;
             tempRed = tempMag % tempRed;
             tempMag = temp;
@@ -109,8 +112,8 @@ void changeAudioFile(string tempNumber, Riff &riff){
         riff.resize(magnification);
         riff.reduce(reduce);
     }
-    if(stod(number) < 1){
-        while(tempMag){
+    if (stod(number) < 1) {
+        while (tempMag) {
             int temp = tempMag;
             tempMag = tempRed % tempMag;
             tempRed = temp;
