@@ -78,3 +78,39 @@ int littleEndianToInt(unsigned char* bytes, int size) {
     }
     return data;
 }
+
+void changeAudioFile(string number, Riff &riff, int &reduce, int &magnification){
+    int numberAfterDot;
+    for(int i = 0; i < number.length(); i++){
+        if(number[i] == '.') {
+            numberAfterDot = number.length() - i - 1;
+        }
+    }
+    magnification = stod(number) * pow(10, numberAfterDot);
+    reduce = pow(10, numberAfterDot);
+    int tempRed = reduce;
+    int tempMag = magnification;
+    if(stod(number) == 1) return;
+    if(stod(number) > 1){
+        while(tempRed){
+            int temp = tempRed;
+            tempRed = tempMag % tempRed;
+            tempMag = temp;
+        }
+        magnification /= tempMag;
+        reduce /= tempMag;
+        riff.resize(magnification);
+        riff.reduce(reduce);
+    }
+    if(stod(number) < 1){
+        while(tempMag){
+            int temp = tempMag;
+            tempMag = tempRed % tempMag;
+            tempRed = temp;
+        }
+        magnification /= tempRed;
+        reduce /= tempRed;
+        riff.resize(magnification);
+        riff.reduce(reduce);
+    }
+}
