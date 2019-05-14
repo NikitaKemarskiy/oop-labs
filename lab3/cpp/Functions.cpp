@@ -59,10 +59,6 @@ unsigned char* intToLittleEndian(int data) {
     bytes[1] = (char) ((udata >> 8) & 0xFF);
     bytes[2] = (char) ((udata >> 16) & 0xFF);
     bytes[3] = (char) ((udata >> 24) & 0xFF);
-    // FOR UNSIGNED
-    /*if (data < 0) {
-        bytes[3] += 128;
-    }*/
     return bytes;
 }
 
@@ -72,29 +68,13 @@ unsigned char* numToLittleEndian(int data, int size) {
     for (int i = 0; i < size; i++) {
         bytes[i] = (char) ((udata >> 8 * i) & 0xFF);
     }
-    // FOR UNSIGNED
-    /*if (data < 0) {
-        bytes[size - 1] += 128;
-    }*/
     return bytes;
 }
 
 int littleEndianToInt(unsigned char* bytes, int size) {
     int data = 0;
-
-    // ONLY FOR SIGNED
     for(int i = 0; i < size; i++) {
         data += (int) bytes[i] * pow(256, i);
     }
-    // FOR UNSIGNED ALSO
-    /*for(int i = 0; i < size - 1; i++) {
-        data += (int) bytes[i] * pow(256, i);
-    }
-    if ((int) bytes[size - 1] >= 128) {
-        data += ((int) bytes[size - 1] - 128) * pow(256, size - 1);
-        data *= -1;
-    } else {
-        data += (int) bytes[size - 1] * pow(256, size - 1);
-    }*/
     return data;
 }

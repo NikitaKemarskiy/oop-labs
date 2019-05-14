@@ -26,6 +26,7 @@ int main() {
     Riff riff(bytesOfFile, size); // New Riff instance
 
     riff.resize(2);
+    //riff.reduce(2);
 
     openFileOUTPUT(fout, OUTPUT_FILE); // Open output stream
     writeFile(fout, riff, OUTPUT_FILE); // Write bytes into output file

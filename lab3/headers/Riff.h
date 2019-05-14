@@ -19,6 +19,7 @@ public:
     unsigned char * build(); // Method that builds new file
     int getSize() { return size; }
     void resize(double factor);
+    void reduce(double factor);
 };
 
 

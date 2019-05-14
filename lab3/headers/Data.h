@@ -22,6 +22,8 @@ public:
     void build(unsigned char* buff);
 
     int resize(double factor);
+
+    int reduce(double);
 };
 
 

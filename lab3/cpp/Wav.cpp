@@ -18,3 +18,7 @@ void Wav::build(unsigned char* buff) {
 int Wav::resize(double factor) {
     return data->resize(factor);
 }
+
+int Wav::reduce(double factor){
+    return data->reduce(factor);
+}
