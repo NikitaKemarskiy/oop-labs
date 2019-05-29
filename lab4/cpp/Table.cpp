@@ -1,7 +1,5 @@
 #include "../header/Table.h"
 
-#include <cstdarg>
-
 Table::Table(string name, string* args, int amount) {
     this->name = name;
     this->amount = amount;
@@ -39,8 +37,8 @@ void Table::resize() {
 
 void Table::addIndex(string name) {
     if (size > 0 || !hasColumn(name) || hasIndex(name)) { return; }
-    Tree tree;
-    indexes.insert(pair<string, Tree>(name, tree));
+    Index index;
+    indexes.insert(pair<string, Index>(name, index));
 }
 
 bool Table::hasColumn(string name) {

@@ -1,7 +1,7 @@
 #ifndef LAB4_TABLE_H
 #define LAB4_TABLE_H
 
-#include "../header/Tree.h"
+#include "../header/Index.h"
 
 #include <iostream>
 #include <string>
@@ -12,7 +12,7 @@ class Table {
 private:
     string name; // Name of the table
     map<string, int> columns; // Map with columns names and their indexes in array
-    map<string, Tree> indexes; // Map with columns names and their binary trees (indexes)
+    map<string, Index> indexes; // Map with columns names and their binary trees (indexes)
     string** table; // Two-dimensional array for data
     int amount; // Number of columns
     int size; // Number of rows
