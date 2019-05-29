@@ -3,7 +3,9 @@
 
 
 class Tree {
-
+private:
+    //...
+public:
 };
 
 

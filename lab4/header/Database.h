@@ -3,6 +3,7 @@
 
 #include "Table.h"
 
+#include <iostream>
 #include <string>
 #include <map>
 using namespace std;
@@ -10,21 +11,18 @@ using namespace std;
 class Database {
 private:
     string name;
-    map<string, Table> tables;
+    map<string, Table*> tables;
+    Table* curr;
 public:
-    Database(string name) {
-        this->name = name;
-    }
+    Database(string name);
+    void addTable(string name, string* args, int amount);
+    bool hasTable(string name);
+    void setCurrent(string name);
+    void add(string* args);
+    void addIndex(string name);
+    string getName();
 
-    void addTable(string name) {
-        if (hasTable(name)) { return; } // Table already exists
-        Table table;
-        tables.insert(pair<string, Table>(name, table));
-    }
-
-    bool hasTable(string name) {
-        return tables.find(name) == tables.end();
-    }
+    void printData();
 };
 
 
