@@ -1,0 +1,48 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/libs/header/md5.h
+cstring
+-
+iostream
+-
+
+/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/cpp/Database.cpp
+../header/Database.h
+/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/header/Database.h
+../../libs/header/md5.h
+/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/libs/header/md5.h
+
+/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/header/Database.h
+Table.h
+/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/header/Table.h
+iostream
+-
+string
+-
+map
+-
+
+/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/header/Index.h
+Tree.h
+/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/header/Tree.h
+string
+-
+
+/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/header/Table.h
+Index.h
+/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/header/Index.h
+iostream
+-
+string
+-
+map
+-
+
+/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/header/Tree.h
+
