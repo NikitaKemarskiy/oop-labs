@@ -84,7 +84,13 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/libs/cpp/csv.cpp">
+			<Option target="lab4"/>
+		</Unit>
 		<Unit filename="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/libs/cpp/md5.cpp">
+			<Option target="lab4"/>
+		</Unit>
+		<Unit filename="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/libs/header/csv.h">
 			<Option target="lab4"/>
 		</Unit>
 		<Unit filename="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/libs/header/md5.h">

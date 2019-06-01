@@ -1,4 +1,5 @@
 #include "../header/Database.h"
+#include "../../libs/header/csv.h"
 
 #include <iostream>
 using namespace std;
@@ -11,6 +12,11 @@ int main() {
     database.init();
     if (!database.hasTable("places")) { createPlacesTable(database); } // Database has no places table
     database.setCurrent("places");
+
+    /*string* items = csv::parse("1997,Ford,E350,\"ac, abs, moon\",3000.00", 5);
+    for (int i = 0; i < 5; i++) {
+        cout << items[i] << endl;
+    }*/
 
     return 0;
 }

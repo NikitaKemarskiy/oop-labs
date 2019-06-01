@@ -123,6 +123,33 @@ lab4/fast:
 	$(MAKE) -f CMakeFiles/lab4.dir/build.make CMakeFiles/lab4.dir/build
 .PHONY : lab4/fast
 
+libs/cpp/csv.o: libs/cpp/csv.cpp.o
+
+.PHONY : libs/cpp/csv.o
+
+# target to build an object file
+libs/cpp/csv.cpp.o:
+	$(MAKE) -f CMakeFiles/lab4.dir/build.make CMakeFiles/lab4.dir/libs/cpp/csv.cpp.o
+.PHONY : libs/cpp/csv.cpp.o
+
+libs/cpp/csv.i: libs/cpp/csv.cpp.i
+
+.PHONY : libs/cpp/csv.i
+
+# target to preprocess a source file
+libs/cpp/csv.cpp.i:
+	$(MAKE) -f CMakeFiles/lab4.dir/build.make CMakeFiles/lab4.dir/libs/cpp/csv.cpp.i
+.PHONY : libs/cpp/csv.cpp.i
+
+libs/cpp/csv.s: libs/cpp/csv.cpp.s
+
+.PHONY : libs/cpp/csv.s
+
+# target to generate assembly for a file
+libs/cpp/csv.cpp.s:
+	$(MAKE) -f CMakeFiles/lab4.dir/build.make CMakeFiles/lab4.dir/libs/cpp/csv.cpp.s
+.PHONY : libs/cpp/csv.cpp.s
+
 libs/cpp/md5.o: libs/cpp/md5.cpp.o
 
 .PHONY : libs/cpp/md5.o
@@ -321,6 +348,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... lab4"
+	@echo "... libs/cpp/csv.o"
+	@echo "... libs/cpp/csv.i"
+	@echo "... libs/cpp/csv.s"
 	@echo "... libs/cpp/md5.o"
 	@echo "... libs/cpp/md5.i"
 	@echo "... libs/cpp/md5.s"

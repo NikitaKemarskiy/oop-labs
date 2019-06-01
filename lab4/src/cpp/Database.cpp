@@ -43,8 +43,10 @@ void Database::addTable(string name, string* args, int amount) { // Method for a
     string systemName = md5(name + to_string(amount)) + ".csv";
     Table* table = new Table(name, systemName, args, amount);
     tables.insert(pair<string, Table*>(name, table));
-    // Создать новый csv файл для таблицы и в первой строке записать имена колонок через запятую
+    // Создать новый csv файл для таблицы
     // Файл будет расположен в папке с таблицами data/tables
+    // Добавляем в качестве первой строки имена колонок
+    table->add(args);
 }
 
 bool Database::hasTable(string name) { // Method for checking if database has a table

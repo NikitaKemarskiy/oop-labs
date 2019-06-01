@@ -6,17 +6,17 @@
 
 #IncludeRegexTransform: 
 
-/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/libs/header/md5.h
-cstring
--
-iostream
+/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/libs/header/csv.h
+string
 -
 
-/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/cpp/Database.cpp
+/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/cpp/main.cpp
 ../header/Database.h
 /home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/header/Database.h
-../../libs/header/md5.h
-/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/libs/header/md5.h
+../../libs/header/csv.h
+/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/libs/header/csv.h
+iostream
+-
 
 /home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/header/Database.h
 Table.h

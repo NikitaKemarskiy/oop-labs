@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/lab4.dir/src/cpp/Node.cpp.o"
   "CMakeFiles/lab4.dir/src/cpp/Index.cpp.o"
   "CMakeFiles/lab4.dir/libs/cpp/md5.cpp.o"
+  "CMakeFiles/lab4.dir/libs/cpp/csv.cpp.o"
   "lab4.pdb"
   "lab4"
 )
