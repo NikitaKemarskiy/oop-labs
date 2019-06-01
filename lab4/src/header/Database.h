@@ -25,10 +25,11 @@ public:
     void init();
     void save();
     void addTable(string name, string* args, int amount);
-    bool hasTable(string name);
-    void setCurrent(string name);
     void add(string* args);
     void addIndex(string name);
+    void setCurrent(string name);
+    void setSize(string name, int size);
+    bool hasTable(string name);
     string getName();
 };
 

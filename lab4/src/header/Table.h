@@ -16,16 +16,20 @@ private:
     map<string, int> sizes; // Map with columns names and their sizes in bytes
     map<string, Index> indexes; // Map with columns names and their binary trees (indexes)
     int columnsAmount; // Number of columns
-    int size; // Number of rows
+    int lineSize; // Size of a line in bytes
+    bool init; // Flag if the table was ever used before (to prevent from creating new indexes)
 
-    const static int defaultSize = 32;
+    const static int defaultSize;
 public:
     Table(string name, string systemName, string* args, int columnsAmount);
     void add(string* args);
     void addIndex(string name);
+    void addIndex(string name, string data);
     void setSize(string name, int size);
+    void setInit(bool init);
     bool hasColumn(string name);
     bool hasIndex(string name);
+    int getLineSize();
     string getName();
 };
 

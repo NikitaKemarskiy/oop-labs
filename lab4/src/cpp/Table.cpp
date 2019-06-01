@@ -5,20 +5,25 @@ Table::Table(string name, string systemName, string* args, int columnsAmount) {
     this->name = name;
     this->systemName = systemName;
     this->columnsAmount = columnsAmount;
+    init = false;
     for (int i = 0; i < columnsAmount; i++) { // Fill the columns map with names and their indexes in array
         columns.insert(pair<string, int>(args[i], i));
         sizes.insert(pair<string, int>(args[i], defaultSize));
     }
+    lineSize = 0;
+    for (std::map<string, int>::iterator iter = sizes.begin(); iter != sizes.end(); ++iter) {
+        lineSize += iter->second;
+    }
 }
 
 void Table::add(string* args) { // Method for adding a row
+    if (!init) { init = true; }
     // Добавляем новую строку в файл с таблицей
     // Надо вторым аргументом передавать открытый поток для записи
-    // size++; // Increment the size
 }
 
 void Table::addIndex(string name) { // Method for adding an index
-    if (size > 0 || !hasColumn(name) || hasIndex(name)) { return; }
+    if (init || !hasColumn(name) || hasIndex(name)) { return; }
     Index index(name);
     indexes.insert(pair<string, Index>(name, index));
     /*
@@ -27,9 +32,20 @@ void Table::addIndex(string name) { // Method for adding an index
      */
 }
 
+void Table::addIndex(string name, string data) { // Method for adding an index
+    if (!hasColumn(name) || hasIndex(name)) { return; }
+    Index index(name, data);
+}
+
 void Table::setSize(string name, int size) {
-    if (!hasColumn(name) || size < 1) { return; }
+    if (init || !hasColumn(name) || size < 1) { return; }
+    lineSize -= sizes[name];
     sizes[name] = size; // Set new size in bytes
+    lineSize += sizes[name];
+}
+
+void Table::setInit(bool init) {
+    this->init = init;
 }
 
 bool Table::hasColumn(string name) { // Method to check if table has a column
@@ -40,6 +56,12 @@ bool Table::hasIndex(string name) { // Method to check if table has an index
     return !(indexes.find(name) == indexes.end());
 }
 
+int Table::getLineSize() {
+    return lineSize;
+}
+
 string Table::getName() { // Table name getter
     return name;
 }
+
+const int Table::defaultSize = 32;

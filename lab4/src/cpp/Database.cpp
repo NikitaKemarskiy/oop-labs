@@ -20,6 +20,7 @@ void Database::init() { // Method for initializing the database
      *  3. После добавления всех таблиц читаем файл metadataIndexFile про то, какие индексы у каких есть таблиц. Теперь
      *     каждый индекс нужно подобавлять в таблицы, для каждого индекса беря информацию в string из data/indexes и передавая
      *     эту информацию в конструктор индекса (то есть все индексы построятся в оперативной памяти)
+     *  4. Нужно сделать все прочитанные таблицы проинициализированными table.setInit(true);
      */
 }
 
@@ -45,19 +46,11 @@ void Database::addTable(string name, string* args, int amount) { // Method for a
     tables.insert(pair<string, Table*>(name, table));
     // Создать новый csv файл для таблицы
     // Файл будет расположен в папке с таблицами data/tables
+    // Добавляем таблицу в файл metadataTableFile
+    // ================================================
     // Добавляем в качестве первой строки имена колонок
     table->add(args);
-}
-
-bool Database::hasTable(string name) { // Method for checking if database has a table
-    return !(tables.find(name) == tables.end());
-}
-
-void Database::setCurrent(string name) { // Method for setting current table
-    if (!hasTable(name)) { return; } // Table doesn't exist
-    curr = tables.at(name);
-    // Нужно открыть текущий поток
-    // Текущий поток - поле данного класса (Databaase)
+    table->setInit(false);
 }
 
 void Database::add(string *args) { // Method for adding a row to a table
@@ -69,6 +62,22 @@ void Database::add(string *args) { // Method for adding a row to a table
 void Database::addIndex(string name) { // Method for adding an index to a current table
     if (!curr) { return; } // No current table
     curr->addIndex(name);
+}
+
+void Database::setCurrent(string name) { // Method for setting current table
+    if (!hasTable(name)) { return; } // Table doesn't exist
+    curr = tables.at(name);
+    // Нужно открыть текущий поток
+    // Текущий поток - поле данного класса (Database)
+}
+
+void Database::setSize(string name, int size) { // Method for setting table column size in bytes
+    if (!curr) { return; } // No current table
+    curr->setSize(name, size);
+}
+
+bool Database::hasTable(string name) { // Method for checking if database has a table
+    return !(tables.find(name) == tables.end());
 }
 
 string Database::getName() { // Database name getter
