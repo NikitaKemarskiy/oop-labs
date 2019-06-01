@@ -2,10 +2,10 @@
 #define LAB4_TABLE_H
 
 #include "Index.h"
-
 #include <iostream>
 #include <string>
 #include <map>
+#include <fstream>
 using namespace std;
 
 class Table {
@@ -15,14 +15,15 @@ private:
     map<string, int> columns; // Map with columns names and their indexes in array
     map<string, int> sizes; // Map with columns names and their sizes in bytes
     map<string, Index> indexes; // Map with columns names and their binary trees (indexes)
+    map<int, string> columnsIndexes; // Map with indexes and its columns names
     int columnsAmount; // Number of columns
     int lineSize; // Size of a line in bytes
     bool init; // Flag if the table was ever used before (to prevent from creating new indexes)
 
     const static int defaultSize;
 public:
-    Table(string name, string systemName, string* args, int columnsAmount);
-    void add(string* args);
+    Table(string name, string* args, int columnsAmount);
+    void add(string* args, ofstream &fout);
     void addIndex(string name);
     void addIndex(string name, string data);
     void setSize(string name, int size);

@@ -1,23 +1,39 @@
 #include "../header/Table.h"
 #include "../header/Index.h"
 
-Table::Table(string name, string systemName, string* args, int columnsAmount) {
+Table::Table(string name, string* args, int columnsAmount) {
     this->name = name;
-    this->systemName = systemName;
     this->columnsAmount = columnsAmount;
     init = false;
     for (int i = 0; i < columnsAmount; i++) { // Fill the columns map with names and their indexes in array
         columns.insert(pair<string, int>(args[i], i));
         sizes.insert(pair<string, int>(args[i], defaultSize));
+        columnsIndexes.insert(pair<int, string>(i, args[i]));
     }
     lineSize = 0;
-    for (std::map<string, int>::iterator iter = sizes.begin(); iter != sizes.end(); ++iter) {
+    for (map<string, int>::iterator iter = sizes.begin(); iter != sizes.end(); ++iter) {
         lineSize += iter->second;
     }
 }
 
-void Table::add(string* args) { // Method for adding a row
+void Table::add(string* args, ofstream& fout) { // Method for adding a row
     if (!init) { init = true; }
+    string str = "";
+    for (int i = 0; i < columnsAmount; i++) {
+        int size = sizes[columnsIndexes[i]];
+        string curr = args[i];
+        if (curr.length() > size) {
+            curr = curr.substr(0, size);
+        }
+        while (curr.length() < size) {
+            curr += " ";
+        }
+        str += curr;
+        if (i < columnsAmount - 1) {
+            str += ",";
+        }
+    }
+    fout << str + "\n";
     // Добавляем новую строку в файл с таблицей
     // Надо вторым аргументом передавать открытый поток для записи
 }

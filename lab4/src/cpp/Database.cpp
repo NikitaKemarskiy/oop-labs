@@ -1,9 +1,14 @@
 #include "../header/Database.h"
-#include "../../libs/header/md5.h"
+#include <fstream>
 
 Database::Database(string name) {
     this->name = name;
     curr = nullptr;
+}
+
+Database::~Database(){
+    fin.close();
+    fout.close();
 }
 
 void Database::init() { // Method for initializing the database
@@ -41,22 +46,31 @@ void Database::save() { // Method for saving updated data on disk
 
 void Database::addTable(string name, string* args, int amount) { // Method for adding a table
     if (hasTable(name)) { return; } // Table already exists
-    string systemName = md5(name + to_string(amount)) + ".csv";
-    Table* table = new Table(name, systemName, args, amount);
+    Table* table = new Table(name, args, amount);
     tables.insert(pair<string, Table*>(name, table));
-    // Создать новый csv файл для таблицы
-    // Файл будет расположен в папке с таблицами data/tables
-    // Добавляем таблицу в файл metadataTableFile
-    // ================================================
-    // Добавляем в качестве первой строки имена колонок
-    table->add(args);
+
+    cout << tableDirectory + "/" + name + ".csv" << endl;
+    ofstream foutTable(tableDirectory + "/" + name + ".csv");
+
     table->setInit(false);
+
+    foutTable.close();
+
+    ofstream foutMetadata(metadataTableFile, ios::app);
+    string str = name + ",";
+    str += amount + ",";
+    for (int i = 0; i < amount; i++) {
+        str += args[i];
+        if (i < amount - 1) { str += ":"; }
+    }
+    foutMetadata << str + "\n";
+    foutMetadata.close();
 }
 
 void Database::add(string *args) { // Method for adding a row to a table
     if (!curr) { return; } // No current table
     // В метод ниже вторым аргументом нужно передавать текущий поток
-    curr->add(args);
+    curr->add(args, fout);
 }
 
 void Database::addIndex(string name) { // Method for adding an index to a current table
@@ -67,6 +81,18 @@ void Database::addIndex(string name) { // Method for adding an index to a curren
 void Database::setCurrent(string name) { // Method for setting current table
     if (!hasTable(name)) { return; } // Table doesn't exist
     curr = tables.at(name);
+    if (fin.is_open()){
+        fin.close();
+    }
+    if (fout.is_open()){
+        fout.close();
+    }
+    fin.open(tableDirectory + "/" + curr->getName() + ".csv");
+    if (!fin.is_open()){
+        cout << "Error. No data directory" << endl;
+        exit(1);
+    }
+    fout.open(tableDirectory + "/" + curr->getName() + ".csv", ios::app);
     // Нужно открыть текущий поток
     // Текущий поток - поле данного класса (Database)
 }
@@ -84,7 +110,7 @@ string Database::getName() { // Database name getter
     return name;
 }
 
-const string Database::tableDirectory = "../../data/tables";
-const string Database::indexDirectory = "../../data/indexes";
-const string Database::metadataTableFile = "../../data/metadata/tables.csv";
-const string Database::metadataIndexFile = "../../data/metadata/indexes.csv";
+const string Database::tableDirectory = "../data/tables";
+const string Database::indexDirectory = "../data/indexes";
+const string Database::metadataTableFile = "../data/metadata/tables.csv";
+const string Database::metadataIndexFile = "../data/metadata/indexes.csv";

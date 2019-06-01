@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <fstream>
 using namespace std;
 
 class Database {
@@ -13,6 +14,8 @@ private:
     string name;
     map<string, Table*> tables;
     Table* curr;
+    ifstream fin;
+    ofstream fout;
     // Нужно добавить в качестве поля текущий поток для работы с таблицей
     // Потом этот поток будет использоваться для чтения/записи таблицы
 
@@ -22,6 +25,7 @@ private:
     static const string metadataIndexFile;
 public:
     Database(string name);
+    ~Database();
     void init();
     void save();
     void addTable(string name, string* args, int amount);

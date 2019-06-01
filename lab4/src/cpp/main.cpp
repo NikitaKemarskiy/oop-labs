@@ -13,6 +13,9 @@ int main() {
     if (!database.hasTable("places")) { createPlacesTable(database); } // Database has no places table
     database.setCurrent("places");
 
+    //string arr[] = {"1","123","45","type1","subtype3","some name","123 karla marska"};
+    //database.add(arr);
+
     /*string* items = csv::parse("1997,Ford,E350,\"ac, abs, moon\",3000.00", 5);
     for (int i = 0; i < 5; i++) {
         cout << items[i] << endl;

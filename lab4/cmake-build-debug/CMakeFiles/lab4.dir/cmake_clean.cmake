@@ -1,14 +1,15 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/lab4.dir/src/cpp/main.cpp.o"
-  "CMakeFiles/lab4.dir/src/cpp/Database.cpp.o"
-  "CMakeFiles/lab4.dir/src/cpp/Table.cpp.o"
-  "CMakeFiles/lab4.dir/src/cpp/Tree.cpp.o"
-  "CMakeFiles/lab4.dir/src/cpp/Node.cpp.o"
-  "CMakeFiles/lab4.dir/src/cpp/Index.cpp.o"
-  "CMakeFiles/lab4.dir/libs/cpp/md5.cpp.o"
-  "CMakeFiles/lab4.dir/libs/cpp/csv.cpp.o"
+  "CMakeFiles/lab4.dir/src/cpp/main.cpp.obj"
+  "CMakeFiles/lab4.dir/src/cpp/Database.cpp.obj"
+  "CMakeFiles/lab4.dir/src/cpp/Table.cpp.obj"
+  "CMakeFiles/lab4.dir/src/cpp/Tree.cpp.obj"
+  "CMakeFiles/lab4.dir/src/cpp/Node.cpp.obj"
+  "CMakeFiles/lab4.dir/src/cpp/Index.cpp.obj"
+  "CMakeFiles/lab4.dir/libs/cpp/csv.cpp.obj"
   "lab4.pdb"
-  "lab4"
+  "lab4.exe"
+  "lab4.exe.manifest"
+  "liblab4.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

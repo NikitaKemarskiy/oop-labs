@@ -8,128 +8,118 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/cmake-build-debug"/>
+				<Option working_dir="D:/oop-lab2/oop-labs/lab4/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/nikita/Files/Универ/Программирование/Лабораторные\ работы/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nikita/Files/Универ/Программирование/Лабораторные\ работы/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/nikita/Files/Универ/Программирование/Лабораторные\ работы/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nikita/Files/Универ/Программирование/Лабораторные\ работы/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="rebuild_cache">
-				<Option working_dir="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/nikita/Files/Универ/Программирование/Лабораторные\ работы/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nikita/Files/Универ/Программирование/Лабораторные\ работы/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/nikita/Files/Универ/Программирование/Лабораторные\ работы/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nikita/Files/Универ/Программирование/Лабораторные\ работы/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/mingw64/bin/mingw32-make.exe -f &quot;D:/oop-lab2/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="D:/mingw64/bin/mingw32-make.exe -f &quot;D:/oop-lab2/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/mingw64/bin/mingw32-make.exe -f &quot;D:/oop-lab2/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/mingw64/bin/mingw32-make.exe -f &quot;D:/oop-lab2/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/cmake-build-debug"/>
+				<Option working_dir="D:/oop-lab2/oop-labs/lab4/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/nikita/Files/Универ/Программирование/Лабораторные\ работы/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nikita/Files/Универ/Программирование/Лабораторные\ работы/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/nikita/Files/Универ/Программирование/Лабораторные\ работы/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nikita/Files/Универ/Программирование/Лабораторные\ работы/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/mingw64/bin/mingw32-make.exe -f &quot;D:/oop-lab2/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="D:/mingw64/bin/mingw32-make.exe -f &quot;D:/oop-lab2/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/mingw64/bin/mingw32-make.exe -f &quot;D:/oop-lab2/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/mingw64/bin/mingw32-make.exe -f &quot;D:/oop-lab2/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="lab4">
-				<Option output="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/cmake-build-debug/lab4" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/cmake-build-debug"/>
+				<Option output="D:/oop-lab2/oop-labs/lab4/cmake-build-debug/lab4.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/oop-lab2/oop-labs/lab4/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/include/c++/7"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
-					<Add directory="/usr/include/c++/7/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
+					<Add directory="D:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++"/>
+					<Add directory="D:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="D:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward"/>
+					<Add directory="D:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include"/>
+					<Add directory="D:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed"/>
+					<Add directory="D:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/nikita/Files/Универ/Программирование/Лабораторные\ работы/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 lab4"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nikita/Files/Универ/Программирование/Лабораторные\ работы/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/nikita/Files/Универ/Программирование/Лабораторные\ работы/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nikita/Files/Универ/Программирование/Лабораторные\ работы/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/mingw64/bin/mingw32-make.exe -f &quot;D:/oop-lab2/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 lab4"/>
+					<CompileFile command="D:/mingw64/bin/mingw32-make.exe -f &quot;D:/oop-lab2/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/mingw64/bin/mingw32-make.exe -f &quot;D:/oop-lab2/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/mingw64/bin/mingw32-make.exe -f &quot;D:/oop-lab2/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="lab4/fast">
-				<Option output="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/cmake-build-debug/lab4" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/cmake-build-debug"/>
+				<Option output="D:/oop-lab2/oop-labs/lab4/cmake-build-debug/lab4.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/oop-lab2/oop-labs/lab4/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/include/c++/7"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
-					<Add directory="/usr/include/c++/7/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
+					<Add directory="D:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++"/>
+					<Add directory="D:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="D:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward"/>
+					<Add directory="D:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include"/>
+					<Add directory="D:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed"/>
+					<Add directory="D:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/nikita/Files/Универ/Программирование/Лабораторные\ работы/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 lab4/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nikita/Files/Универ/Программирование/Лабораторные\ работы/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/nikita/Files/Универ/Программирование/Лабораторные\ работы/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nikita/Files/Универ/Программирование/Лабораторные\ работы/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/mingw64/bin/mingw32-make.exe -f &quot;D:/oop-lab2/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 lab4/fast"/>
+					<CompileFile command="D:/mingw64/bin/mingw32-make.exe -f &quot;D:/oop-lab2/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/mingw64/bin/mingw32-make.exe -f &quot;D:/oop-lab2/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/mingw64/bin/mingw32-make.exe -f &quot;D:/oop-lab2/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="D:/oop-lab2/oop-labs/lab4/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/mingw64/bin/mingw32-make.exe -f &quot;D:/oop-lab2/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="D:/mingw64/bin/mingw32-make.exe -f &quot;D:/oop-lab2/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/mingw64/bin/mingw32-make.exe -f &quot;D:/oop-lab2/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/mingw64/bin/mingw32-make.exe -f &quot;D:/oop-lab2/oop-labs/lab4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/libs/cpp/csv.cpp">
+		<Unit filename="D:/oop-lab2/oop-labs/lab4/libs/cpp/csv.cpp">
 			<Option target="lab4"/>
 		</Unit>
-		<Unit filename="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/libs/cpp/md5.cpp">
+		<Unit filename="D:/oop-lab2/oop-labs/lab4/libs/header/csv.h">
 			<Option target="lab4"/>
 		</Unit>
-		<Unit filename="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/libs/header/csv.h">
+		<Unit filename="D:/oop-lab2/oop-labs/lab4/src/cpp/Database.cpp">
 			<Option target="lab4"/>
 		</Unit>
-		<Unit filename="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/libs/header/md5.h">
+		<Unit filename="D:/oop-lab2/oop-labs/lab4/src/cpp/Index.cpp">
 			<Option target="lab4"/>
 		</Unit>
-		<Unit filename="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/cpp/Database.cpp">
+		<Unit filename="D:/oop-lab2/oop-labs/lab4/src/cpp/Node.cpp">
 			<Option target="lab4"/>
 		</Unit>
-		<Unit filename="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/cpp/Index.cpp">
+		<Unit filename="D:/oop-lab2/oop-labs/lab4/src/cpp/Table.cpp">
 			<Option target="lab4"/>
 		</Unit>
-		<Unit filename="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/cpp/Node.cpp">
+		<Unit filename="D:/oop-lab2/oop-labs/lab4/src/cpp/Tree.cpp">
 			<Option target="lab4"/>
 		</Unit>
-		<Unit filename="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/cpp/Table.cpp">
+		<Unit filename="D:/oop-lab2/oop-labs/lab4/src/cpp/main.cpp">
 			<Option target="lab4"/>
 		</Unit>
-		<Unit filename="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/cpp/Tree.cpp">
+		<Unit filename="D:/oop-lab2/oop-labs/lab4/src/header/Database.h">
 			<Option target="lab4"/>
 		</Unit>
-		<Unit filename="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/cpp/main.cpp">
+		<Unit filename="D:/oop-lab2/oop-labs/lab4/src/header/Index.h">
 			<Option target="lab4"/>
 		</Unit>
-		<Unit filename="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/header/Database.h">
+		<Unit filename="D:/oop-lab2/oop-labs/lab4/src/header/Node.h">
 			<Option target="lab4"/>
 		</Unit>
-		<Unit filename="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/header/Index.h">
+		<Unit filename="D:/oop-lab2/oop-labs/lab4/src/header/Table.h">
 			<Option target="lab4"/>
 		</Unit>
-		<Unit filename="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/header/Node.h">
+		<Unit filename="D:/oop-lab2/oop-labs/lab4/src/header/Tree.h">
 			<Option target="lab4"/>
 		</Unit>
-		<Unit filename="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/header/Table.h">
-			<Option target="lab4"/>
-		</Unit>
-		<Unit filename="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/header/Tree.h">
-			<Option target="lab4"/>
-		</Unit>
-		<Unit filename="/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/CMakeLists.txt">
+		<Unit filename="D:/oop-lab2/oop-labs/lab4/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

@@ -6,43 +6,41 @@
 
 #IncludeRegexTransform: 
 
-/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/libs/header/csv.h
-string
--
-
-/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/cpp/main.cpp
+D:/oop-lab2/oop-labs/lab4/src/cpp/Database.cpp
 ../header/Database.h
-/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/header/Database.h
-../../libs/header/csv.h
-/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/libs/header/csv.h
-iostream
+D:/oop-lab2/oop-labs/lab4/src/header/Database.h
+fstream
 -
 
-/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/header/Database.h
+D:/oop-lab2/oop-labs/lab4/src/header/Database.h
 Table.h
-/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/header/Table.h
+D:/oop-lab2/oop-labs/lab4/src/header/Table.h
 iostream
 -
 string
 -
 map
 -
+fstream
+-
 
-/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/header/Index.h
+D:/oop-lab2/oop-labs/lab4/src/header/Index.h
 Tree.h
-/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/header/Tree.h
+D:/oop-lab2/oop-labs/lab4/src/header/Tree.h
 string
 -
 
-/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/header/Table.h
+D:/oop-lab2/oop-labs/lab4/src/header/Table.h
 Index.h
-/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/header/Index.h
+D:/oop-lab2/oop-labs/lab4/src/header/Index.h
 iostream
 -
 string
 -
 map
 -
+fstream
+-
 
-/home/nikita/Files/Универ/Программирование/Лабораторные работы/oop-labs/lab4/src/header/Tree.h
+D:/oop-lab2/oop-labs/lab4/src/header/Tree.h
 
