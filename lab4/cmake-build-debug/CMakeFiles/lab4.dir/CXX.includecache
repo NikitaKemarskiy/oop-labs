@@ -6,9 +6,15 @@
 
 #IncludeRegexTransform: 
 
+D:/oop-lab2/oop-labs/lab4/libs/header/csv.h
+string
+-
+
 D:/oop-lab2/oop-labs/lab4/src/cpp/Database.cpp
 ../header/Database.h
 D:/oop-lab2/oop-labs/lab4/src/header/Database.h
+../../libs/header/csv.h
+D:/oop-lab2/oop-labs/lab4/libs/header/csv.h
 fstream
 -
 

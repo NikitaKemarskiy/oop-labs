@@ -1,4 +1,5 @@
 #include "../header/Database.h"
+#include "../../libs/header/csv.h"
 #include <fstream>
 
 Database::Database(string name) {
@@ -12,15 +13,41 @@ Database::~Database(){
 }
 
 void Database::init() { // Method for initializing the database
-    // tableDirectory - папка с таблицами
-    // indexDirectory - папка с индексами
-    // metadataTableFile - файл с данными про таблицы
-    // metadataIndexFile - файл с данными про индексы
+    ifstream fin(metadataTableFile);
+    string buff = "";
+    while (!fin.eof()) {
+        string* arr;
+        getline(fin, buff);
+        if(fin.eof()){
+            cout << "This is the end" << endl;
+            return;
+        }
+        arr = csv::parse(buff, 3);
+        string* columns = new string[stoi(arr[1])];
+        string temp = "";
+        int index = 0;
+        for (int j = 0; j < arr[2].length(); j++) {
+            if (arr[2][j] == ':') {
+                columns[index] = temp;
+                temp = "";
+                index++;
+                continue;
+            }
+            temp += arr[2][j];
+        }
+        Table* table = new Table(arr[0], columns, stoi(arr[1]));
+        tables.insert(pair<string, Table*>(arr[0], table));
+        table->setInit(true);
+
+        delete[] arr;
+        delete[] columns;
+    }
+    fin.close();
     /*
      * Алгоритм действий данного метода:
      *  1. Открываем файл metadataTableFile
      *  2. Читаем с него данные про то, какие есть таблицы и добавляем их в map tables с помощью следующего кода:
-     *      Table* table = new Table(name, systemName, args, amount);
+     *      Table* table = new Table(name, args, amount);
      *      tables.insert(pair<string, Table*>(name, table));
      *  3. После добавления всех таблиц читаем файл metadataIndexFile про то, какие индексы у каких есть таблиц. Теперь
      *     каждый индекс нужно подобавлять в таблицы, для каждого индекса беря информацию в string из data/indexes и передавая
@@ -58,7 +85,7 @@ void Database::addTable(string name, string* args, int amount) { // Method for a
 
     ofstream foutMetadata(metadataTableFile, ios::app);
     string str = name + ",";
-    str += amount + ",";
+    str += to_string(amount) + ",";
     for (int i = 0; i < amount; i++) {
         str += args[i];
         if (i < amount - 1) { str += ":"; }
@@ -89,7 +116,7 @@ void Database::setCurrent(string name) { // Method for setting current table
     }
     fin.open(tableDirectory + "/" + curr->getName() + ".csv");
     if (!fin.is_open()){
-        cout << "Error. No data directory" << endl;
+        cout << "Error: No data directory" << endl;
         exit(1);
     }
     fout.open(tableDirectory + "/" + curr->getName() + ".csv", ios::app);

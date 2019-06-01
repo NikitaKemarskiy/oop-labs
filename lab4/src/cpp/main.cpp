@@ -1,6 +1,7 @@
 #include "../header/Database.h"
 #include "../../libs/header/csv.h"
 
+#include <string>
 #include <iostream>
 using namespace std;
 
