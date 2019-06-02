@@ -7,7 +7,7 @@ Database::Database(string name) {
     curr = nullptr;
 }
 
-Database::~Database(){
+Database::~Database() {
     fin.close();
     fout.close();
 }
@@ -18,10 +18,7 @@ void Database::init() { // Method for initializing the database
     while (!fin.eof()) {
         string* arr;
         getline(fin, buff);
-        if(fin.eof()){
-            cout << "This is the end" << endl;
-            return;
-        }
+        if (fin.eof()) { return; }
         arr = csv::parse(buff, 3);
         string* columns = new string[stoi(arr[1])];
         string temp = "";
@@ -108,14 +105,14 @@ void Database::addIndex(string name) { // Method for adding an index to a curren
 void Database::setCurrent(string name) { // Method for setting current table
     if (!hasTable(name)) { return; } // Table doesn't exist
     curr = tables.at(name);
-    if (fin.is_open()){
+    if (fin.is_open()) {
         fin.close();
     }
-    if (fout.is_open()){
+    if (fout.is_open()) {
         fout.close();
     }
     fin.open(tableDirectory + "/" + curr->getName() + ".csv");
-    if (!fin.is_open()){
+    if (!fin.is_open()) {
         cout << "Error: No data directory" << endl;
         exit(1);
     }

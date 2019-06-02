@@ -1,6 +1,8 @@
 #include "../header/Database.h"
 #include "../../libs/header/csv.h"
 
+#include "../header/Tree.h"
+
 #include <string>
 #include <iostream>
 using namespace std;
@@ -21,6 +23,19 @@ int main() {
     for (int i = 0; i < 5; i++) {
         cout << items[i] << endl;
     }*/
+
+    Tree tree;
+
+    tree.addNode(6.0, 1);
+    tree.addNode(5, 1);
+    tree.addNode(1, 4);
+    tree.addNode(8.1, 3.03);
+    tree.addNode(9, 6);
+    tree.addNode(3, 2);
+    tree.addNode(4, 5);
+
+    tree.bypass();
+    cout << endl << tree.serialize() << endl;
 
     return 0;
 }

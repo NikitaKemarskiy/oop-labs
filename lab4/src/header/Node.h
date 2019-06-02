@@ -1,25 +1,28 @@
 #ifndef LAB4_NODE_H
 #define LAB4_NODE_H
 
+#include <string>
+using namespace std;
 
-class Nodprivate{
+class Node{
 private:
     double key;
     double data;
     unsigned int height;
-    Nodprivate* left;
-    Nodprivate* right;
+    Node* left;
+    Node* right;
 public:
-    Nodprivate();
-    Nodprivate(double key, double data);
+    Node();
+    Node(double key, double data);
     double getKey() { return key; }
     double getData() { return data; }
     unsigned int getHeight() { return height; }
-    Nodprivate* getLeft() { return left; }
-    Nodprivate* getRight() { return right; }
+    Node* getLeft() { return left; }
+    Node* getRight() { return right; }
     void setHeight(unsigned int height) { this->height = height; }
-    void setLeft(Nodprivate* left) { this->left = left; }
-    void setRight(Nodprivate* right) { this->right = right; }
+    void setLeft(Node* left) { this->left = left; }
+    void setRight(Node* right) { this->right = right; }
+    string toString();
 };
 
 

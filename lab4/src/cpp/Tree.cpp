@@ -1,25 +1,29 @@
 #include "../header/Tree.h"
 
-Tree::Tree(){
+#include <iostream>
+#include <queue>
+using namespace std;
+
+Tree::Tree() {
     root = nullptr;
 }
 
-unsigned int Tree::getHeight(Nodprivate* node){
+unsigned int Tree::getHeight(Node* node) {
     return node ? node->getHeight() : 0;
 }
 
-int Tree::balanceFactor(Nodprivate* node){
+int Tree::balanceFactor(Node* node) {
     return getHeight(node->getRight()) - getHeight(node->getLeft());
 }
 
-void Tree::calculateHeight(Nodprivate* node){
+void Tree::calculateHeight(Node* node) {
     unsigned int heightLeft = getHeight(node->getLeft());
     unsigned int heightRight = getHeight(node->getRight());
     node->setHeight((heightLeft > heightRight ? heightLeft : heightRight) + 1);
 }
 
-Nodprivate* Tree::leftRotate(Nodprivate* node){
-    Nodprivate* newNode = node->getRight();
+Node* Tree::leftRotate(Node* node) {
+    Node* newNode = node->getRight();
     node->setRight(newNode->getLeft());
     newNode->setLeft(node);
     calculateHeight(node);
@@ -27,8 +31,8 @@ Nodprivate* Tree::leftRotate(Nodprivate* node){
     return newNode;
 }
 
-Nodprivate* Tree::rightRotate(Nodprivate *node) {
-    Nodprivate* newNode = node->getLeft();
+Node* Tree::rightRotate(Node *node) {
+    Node* newNode = node->getLeft();
     node->setLeft(newNode->getRight());
     newNode->setRight(node);
     calculateHeight(node);
@@ -36,17 +40,17 @@ Nodprivate* Tree::rightRotate(Nodprivate *node) {
     return newNode;
 }
 
-Nodprivate* Tree::balancing(Nodprivate *node) {
+Node* Tree::balancing(Node *node) {
     calculateHeight(node);
-    if(balanceFactor(node) == 2){
-        if(balanceFactor(node->getRight()) < 0){
+    if (balanceFactor(node) == 2) {
+        if (balanceFactor(node->getRight()) < 0) {
             node->setRight(rightRotate(node->getRight()));
         }
         node = leftRotate(node);
         return node;
     }
-    else if(balanceFactor(node) == -2){
-        if(balanceFactor(node->getLeft()) > 0){
+    else if (balanceFactor(node) == -2) {
+        if (balanceFactor(node->getLeft()) > 0) {
             node->setLeft(leftRotate(node->getLeft()));
         }
         node = rightRotate(node);
@@ -55,16 +59,20 @@ Nodprivate* Tree::balancing(Nodprivate *node) {
     return node;
 }
 
-Nodprivate* Tree::insert(Nodprivate *node, double key, double data) {
-    if(!node){
-        return new Nodprivate(key, data);
+Node* Tree::insert(Node *node, double key, double data) {
+    if (!node) {
+        return new Node(key, data);
     }
-    if(data < node->getData()){
+    if (key < node->getKey()) {
         node->setLeft(insert(node->getLeft(), key, data));
-    }else{
+    } else {
         node->setRight(insert(node->getRight(), key, data));
     }
     return balancing(node);
+}
+
+void Tree::init(string data) {
+    //...
 }
 
 void Tree::addNode(double key, double data) {
@@ -72,16 +80,47 @@ void Tree::addNode(double key, double data) {
 }
 
 double Tree::search(double key) {
-    Nodprivate *newNode = root;
+    Node *newNode = root;
     while (newNode) {
-        if (key < newNode->getKey()){
+        if (key < newNode->getKey()) {
             newNode = newNode->getLeft();
-        }else if (key > newNode->getKey()) {
+        } else if (key > newNode->getKey()) {
             newNode = newNode->getRight();
-        }else if (key == newNode->getKey()) {
+        } else if (key == newNode->getKey()) {
             return newNode->getData();
         }
     }
     return -1;
 }
 
+string Tree::serialize() {
+    string str = "";
+    queue<Node*> nodes;
+    nodes.push(root);
+    while (!nodes.empty()) {
+        Node* curr = nodes.front();
+        nodes.pop();
+        if (!curr) { continue; }
+        str += curr->toString() + ",";
+        nodes.push(curr->getLeft());
+        nodes.push(curr->getRight());
+    }
+    str.erase(str.length() - 1, 1);
+    return str;
+}
+
+void Tree::bypass() {
+    bypass(root);
+}
+
+void Tree::bypass(Node* node) {
+    cout << node->toString() << " ";
+    if (node->getLeft()) {
+        cout << "-> (left) ->";
+        bypass(node->getLeft());
+    }
+    if (node->getRight()) {
+        cout << "-> (right) ->";
+        bypass(node->getRight());
+    }
+}

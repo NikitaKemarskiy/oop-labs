@@ -3,20 +3,28 @@
 
 #include "../header/Node.h"
 
+#include <string>
+using namespace std;
+
 class Tree {
 private:
-    Nodprivate* root;
-    unsigned int getHeight(Nodprivate* node);
-    int balanceFactor(Nodprivate* node);
-    void calculateHeight(Nodprivate* node);
-    Nodprivate* leftRotate(Nodprivate* node);
-    Nodprivate* rightRotate(Nodprivate* node);
-    Nodprivate* balancing(Nodprivate* node);
-    Nodprivate* insert(Nodprivate* node, double key, double data);
+    Node* root;
+    unsigned int getHeight(Node* node);
+    int balanceFactor(Node* node);
+    void calculateHeight(Node* node);
+    Node* leftRotate(Node* node);
+    Node* rightRotate(Node* node);
+    Node* balancing(Node* node);
+    Node* insert(Node* node, double key, double data);
 public:
     Tree();
+    void init(string data);
     void addNode(double key, double data);
     double search(double key);
+    string serialize();
+
+    void bypass();
+    void bypass(Node* node);
 };
 
 
