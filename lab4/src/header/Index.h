@@ -9,12 +9,16 @@ using namespace std;
 class Index {
 private:
     string name;
+    string value;
     Tree tree;
 public:
-    Index(string name);
-    Index(string name, string data);
+    Index(string name, string value);
+    Index(string name, string value, string data);
 
     void init(string data);
+    void add(double key, double data);
+    string getName();
+    string getValue();
     string serialize();
 
     // дублируем методы дерева для работы с ним

@@ -1,6 +1,6 @@
 #include "../header/Database.h"
 #include "../../libs/header/Functions.h"
-#include "../../libs/header/csv.h"
+#include "../../libs/header/Csv.h"
 
 Database::Database(string name) {
     this->name = name;
@@ -48,20 +48,21 @@ void Database::init() { // Method for initializing the database
         string buff = "";
         getline(fin, buff);
         if (fin.eof()) { return; }
-        arr = csv::parse(buff, 2);
+        arr = csv::parse(buff, 3);
         Table* table = tables.at(arr[0]);
         string name = arr[1];
+        string value = arr[2];
 
         ifstream finIndex(tableDirectory + "/" + name + ".csv");
         if (!finIndex.is_open()) {
             cout << "Error: No table file." << endl;
             exit(1);
         }
-        string data;
-        readFile(fin, data);
+        string data = "";
+        readFile(finIndex, data);
         finIndex.close();
 
-        table->addIndex(name, data);
+        table->addIndex(name, value, data);
 
         delete[] arr;
     }
@@ -116,9 +117,14 @@ void Database::add(string *args) { // Method for adding a row to a table
     curr->add(args, fout);
 }
 
-void Database::addIndex(string name) { // Method for adding an index to a current table
+void Database::addIndex(string name, string value) { // Method for adding an index to a current table
     if (!curr) { return; } // No current table
-    curr->addIndex(name);
+    int status = curr->addIndex(name, value);
+    if (!status) { // Success
+        ofstream foutMetadata(metadataIndexFile, ios::app);
+        foutMetadata << curr->getName() << "," << name << "," << value << "\n";
+        foutMetadata.close();
+    }
 }
 
 void Database::setCurrent(string name) { // Method for setting current table

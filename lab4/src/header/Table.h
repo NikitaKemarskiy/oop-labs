@@ -23,8 +23,8 @@ private:
 public:
     Table(string name, string* args, int columnsAmount);
     void add(string* args, ofstream &fout);
-    void addIndex(string name);
-    void addIndex(string name, string data);
+    bool addIndex(string name, string value);
+    void addIndex(string name, string value, string data);
     void setSize(string name, int size);
     void setInit(bool init);
     bool hasColumn(string name);

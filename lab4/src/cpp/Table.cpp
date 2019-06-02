@@ -34,17 +34,25 @@ void Table::add(string* args, ofstream& fout) { // Method for adding a row
         }
     }
     fout << str + "\n";
+
+    for (map<string, Index*>::iterator iter = indexes.begin(); iter != indexes.end(); ++iter) {
+        int name = columns.at(iter->first);
+        int value = columns.at(iter->second->getValue());
+        Index* indexCurr = iter->second;
+        indexCurr->add(stod(args[name]), stod(args[value]));
+    }
 }
 
-void Table::addIndex(string name) { // Method for adding an index
-    if (init || !hasColumn(name) || hasIndex(name)) { return; }
-    Index* index = new Index(name);
+bool Table::addIndex(string name, string value) { // Method for adding an index
+    if (init || !hasColumn(name) || hasIndex(name)) { return 1; }
+    Index* index = new Index(name, value);
     indexes.insert(pair<string, Index*>(name, index));
+    return 0;
 }
 
-void Table::addIndex(string name, string data) { // Method for adding an index
+void Table::addIndex(string name, string value, string data) { // Method for adding an index
     if (!hasColumn(name) || hasIndex(name)) { return; }
-    Index* index = new Index(name, data);
+    Index* index = new Index(name, value, data);
     indexes.insert(pair<string, Index*>(name, index));
 }
 
