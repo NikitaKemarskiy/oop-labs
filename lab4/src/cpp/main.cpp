@@ -34,7 +34,6 @@ int main() {
     tree.addNode(3, 2);
     tree.addNode(4, 5);*/
 
-    tree.bypass();
     cout << endl << tree.serialize() << endl;
 
     return 0;

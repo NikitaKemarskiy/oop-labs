@@ -11,10 +11,9 @@ using namespace std;
 class Table {
 private:
     string name; // Name of the table
-    string systemName; // System name of the table
     map<string, int> columns; // Map with columns names and their indexes in array
     map<string, int> sizes; // Map with columns names and their sizes in bytes
-    map<string, Index> indexes; // Map with columns names and their binary trees (indexes)
+    map<string, Index*> indexes; // Map with columns names and their binary trees (indexes)
     map<int, string> columnsIndexes; // Map with indexes and its columns names
     int columnsAmount; // Number of columns
     int lineSize; // Size of a line in bytes
@@ -31,6 +30,7 @@ public:
     bool hasColumn(string name);
     bool hasIndex(string name);
     int getLineSize();
+    map<string, Index*> getIndexes();
     string getName();
 };
 

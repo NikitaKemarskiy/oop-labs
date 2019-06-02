@@ -120,7 +120,9 @@ string Tree::serialize() {
         nodes.push(curr->getLeft());
         nodes.push(curr->getRight());
     }
-    str.erase(str.length() - 1, 1);
+    if (!str.empty()) {
+        str.erase(str.length() - 1, 1);
+    }
     return str;
 }
 

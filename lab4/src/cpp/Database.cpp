@@ -1,4 +1,5 @@
 #include "../header/Database.h"
+#include "../../libs/header/Functions.h"
 #include "../../libs/header/csv.h"
 #include <fstream>
 
@@ -14,9 +15,10 @@ Database::~Database() {
 
 void Database::init() { // Method for initializing the database
     ifstream fin(metadataTableFile);
-    string buff = "";
+
     while (!fin.eof()) {
         string* arr;
+        string buff = "";
         getline(fin, buff);
         if (fin.eof()) { return; }
         arr = csv::parse(buff, 3);
@@ -34,12 +36,40 @@ void Database::init() { // Method for initializing the database
         }
         Table* table = new Table(arr[0], columns, stoi(arr[1]));
         tables.insert(pair<string, Table*>(arr[0], table));
-        table->setInit(true);
 
         delete[] arr;
         delete[] columns;
     }
     fin.close();
+
+    fin.open(metadataIndexFile);
+
+    while (!fin.eof()) {
+        string* arr;
+        string buff = "";
+        getline(fin, buff);
+        if (fin.eof()) { return; }
+        arr = csv::parse(buff, 2);
+        Table* table = tables.at(arr[0]);
+        string name = arr[1];
+
+        ifstream finIndex(tableDirectory + "/" + name + ".csv");
+        string data = readFile(finIndex);
+        finIndex.close();
+
+        table->addIndex(name, data);
+
+        delete[] arr;
+    }
+
+    fin.close();
+
+    for (map<string, Table*>::iterator iter = tables.begin(); iter != tables.end(); ++iter) {
+        iter->second->setInit(true);
+    }
+
+    //table->setInit(true);
+
     /*
      * Алгоритм действий данного метода:
      *  1. Открываем файл metadataTableFile
@@ -54,18 +84,22 @@ void Database::init() { // Method for initializing the database
 }
 
 void Database::save() { // Method for saving updated data on disk
-    // tableDirectory - папка с таблицами
-    // indexDirectory - папка с индексами
-    // metadataTableFile - файл с данными про таблицы
-    // metadataIndexFile - файл с данными про индексы
-    /*
-     * В данном методе все индексы сохраняются на диск
+     /* В данном методе все индексы сохраняются на диск
      * Сериализация индекса в string выполняется посредством метода serialize() (возвращает дерево в формате string)
-     */
-    /*
      * ?????????????? А что если программа аварийно завершится - индексы не сохранятся
      * ?????????????? Может можно сделать как-то понадежнее? Но сериализовать индекс и перезацисывать файл после каждой вставки НЕЭФФЕКТИВНО
      */
+    for (map<string, Table*>::iterator iter = tables.begin(); iter != tables.end(); ++iter) {
+        Table *curr = iter->second;
+        map<string, Index *> indexes = curr->getIndexes();
+        for (map<string, Index *>::iterator iterInd = indexes.begin(); iterInd != indexes.end(); ++iterInd) {
+            string name = iterInd->first;
+            string data = iterInd->second->serialize();
+            ofstream foutIndex(indexDirectory + "/" + name + ".csv");
+            fout << data;
+            fout.close();
+        }
+    }
 }
 
 void Database::addTable(string name, string* args, int amount) { // Method for adding a table

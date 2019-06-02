@@ -76,6 +76,10 @@ int Table::getLineSize() {
     return lineSize;
 }
 
+map<string, Index*> Table::getIndexes() {
+    return indexes;
+}
+
 string Table::getName() { // Table name getter
     return name;
 }
