@@ -72,7 +72,22 @@ Node* Tree::insert(Node *node, double key, double data) {
 }
 
 void Tree::init(string data) {
-    //...
+    if (root) { return; } // Tree isn't empty
+    string buff = "";
+    for (int i = 0; i < data.length(); i++) {
+        if (data[i] != ',') {
+            buff += data[i];
+        }
+        if (data[i] == ',' || i == data.length() - 1) {
+            buff.erase(0, 1);
+            buff.erase(buff.length() - 1, 1);
+            string keyStr = buff.substr(0, buff.find(';'));
+            string dataStr = buff.substr(buff.find(';') + 1);
+            addNode(stod(keyStr), stod(dataStr));
+            buff = "";
+            continue;
+        }
+    }
 }
 
 void Tree::addNode(double key, double data) {
