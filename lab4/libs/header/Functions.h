@@ -5,6 +5,6 @@
 #include <fstream>
 using namespace std;
 
-string readFile(ifstream& fin);
+istream& readFile(ifstream& fin, string& buff);
 
 #endif //LAB4_FUNCTIONS_H

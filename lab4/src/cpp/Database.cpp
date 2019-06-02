@@ -57,7 +57,8 @@ void Database::init() { // Method for initializing the database
             cout << "Error: No table file." << endl;
             exit(1);
         }
-        string data = readFile(finIndex);
+        string data;
+        readFile(fin, data);
         finIndex.close();
 
         table->addIndex(name, data);
