@@ -34,23 +34,18 @@ void Table::add(string* args, ofstream& fout) { // Method for adding a row
         }
     }
     fout << str + "\n";
-    // Добавляем новую строку в файл с таблицей
-    // Надо вторым аргументом передавать открытый поток для записи
 }
 
 void Table::addIndex(string name) { // Method for adding an index
     if (init || !hasColumn(name) || hasIndex(name)) { return; }
-    Index index(name);
-    indexes.insert(pair<string, Index>(name, index));
-    /*
-     * Создаем новый файл в data/indexes.csv для нового индекса
-     * Добавляем инфу про данный индекс в data/metadata/indexes.csv
-     */
+    Index* index = new Index(name);
+    indexes.insert(pair<string, Index*>(name, index));
 }
 
 void Table::addIndex(string name, string data) { // Method for adding an index
     if (!hasColumn(name) || hasIndex(name)) { return; }
-    Index index(name, data);
+    Index* index = new Index(name, data);
+    indexes.insert(pair<string, Index*>(name, index));
 }
 
 void Table::setSize(string name, int size) {

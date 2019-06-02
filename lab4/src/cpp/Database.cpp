@@ -1,7 +1,6 @@
 #include "../header/Database.h"
 #include "../../libs/header/Functions.h"
 #include "../../libs/header/csv.h"
-#include <fstream>
 
 Database::Database(string name) {
     this->name = name;
@@ -54,6 +53,10 @@ void Database::init() { // Method for initializing the database
         string name = arr[1];
 
         ifstream finIndex(tableDirectory + "/" + name + ".csv");
+        if (!finIndex.is_open()) {
+            cout << "Error: No table file." << endl;
+            exit(1);
+        }
         string data = readFile(finIndex);
         finIndex.close();
 
@@ -67,32 +70,13 @@ void Database::init() { // Method for initializing the database
     for (map<string, Table*>::iterator iter = tables.begin(); iter != tables.end(); ++iter) {
         iter->second->setInit(true);
     }
-
-    //table->setInit(true);
-
-    /*
-     * Алгоритм действий данного метода:
-     *  1. Открываем файл metadataTableFile
-     *  2. Читаем с него данные про то, какие есть таблицы и добавляем их в map tables с помощью следующего кода:
-     *      Table* table = new Table(name, args, amount);
-     *      tables.insert(pair<string, Table*>(name, table));
-     *  3. После добавления всех таблиц читаем файл metadataIndexFile про то, какие индексы у каких есть таблиц. Теперь
-     *     каждый индекс нужно подобавлять в таблицы, для каждого индекса беря информацию в string из data/indexes и передавая
-     *     эту информацию в конструктор индекса (то есть все индексы построятся в оперативной памяти)
-     *  4. Нужно сделать все прочитанные таблицы проинициализированными table.setInit(true);
-     */
 }
 
 void Database::save() { // Method for saving updated data on disk
-     /* В данном методе все индексы сохраняются на диск
-     * Сериализация индекса в string выполняется посредством метода serialize() (возвращает дерево в формате string)
-     * ?????????????? А что если программа аварийно завершится - индексы не сохранятся
-     * ?????????????? Может можно сделать как-то понадежнее? Но сериализовать индекс и перезацисывать файл после каждой вставки НЕЭФФЕКТИВНО
-     */
     for (map<string, Table*>::iterator iter = tables.begin(); iter != tables.end(); ++iter) {
         Table *curr = iter->second;
-        map<string, Index *> indexes = curr->getIndexes();
-        for (map<string, Index *>::iterator iterInd = indexes.begin(); iterInd != indexes.end(); ++iterInd) {
+        map<string, Index*> indexes = curr->getIndexes();
+        for (map<string, Index*>::iterator iterInd = indexes.begin(); iterInd != indexes.end(); ++iterInd) {
             string name = iterInd->first;
             string data = iterInd->second->serialize();
             ofstream foutIndex(indexDirectory + "/" + name + ".csv");

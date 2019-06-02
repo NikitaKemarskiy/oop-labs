@@ -1,14 +1,10 @@
-//
-// Created by USER on 02.06.2019.
-//
-
 #ifndef LAB4_FUNCTIONS_H
 #define LAB4_FUNCTIONS_H
 
+#include <string>
+#include <fstream>
+using namespace std;
 
-class Functions {
-
-};
-
+string readFile(ifstream& fin);
 
 #endif //LAB4_FUNCTIONS_H
