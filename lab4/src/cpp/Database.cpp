@@ -155,14 +155,12 @@ int Database::getColumnsAmount() {
     return curr->getColumnsAmount();
 }
 
-string* Database::find(string column, string value) {
-    if (!curr) { return nullptr; } // No current table
+vector<string*> Database::find(string column, string value) {
+    if (!curr) { // No current table
+        vector<string*> vector;
+        return vector;
+    }
     return curr->find(column, value, fin);
-}
-
-string** Database::findAll(string column, string value) {
-    if (!curr) { return nullptr; } // No current table
-    return curr->findAll(column, value, fin);
 }
 
 string Database::getName() { // Database name getter

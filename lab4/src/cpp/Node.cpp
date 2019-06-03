@@ -18,14 +18,20 @@ Node::Node(double key, double data) {
 
 string Node::toString() {
     string keyStr = to_string(key);
-    string dataStr = to_string(data);
+    string dataStr = "";
     keyStr.erase(keyStr.find_last_not_of('0') + 1, string::npos);
-    dataStr.erase(dataStr.find_last_not_of('0') + 1, string::npos);
+    for (int i = 0; i < data.size(); i++) {
+        double curr = data[i];
+        dataStr += to_string(curr);
+        dataStr.erase(dataStr.find_last_not_of('0') + 1, string::npos);
+        if (dataStr[dataStr.length() - 1] == '.') {
+            dataStr.erase(dataStr.length() - 1, 1);
+        }
+        if (i < data.size() - 1) { dataStr += ";"; }
+    }
+
     if (keyStr[keyStr.length() - 1] == '.') {
         keyStr.erase(keyStr.length() - 1, 1);
     }
-    if (dataStr[dataStr.length() - 1] == '.') {
-        dataStr.erase(dataStr.length() - 1, 1);
-    }
-    return "(" + keyStr + ";" + dataStr + ")";
+    return "(" + keyStr + ":" + dataStr + ")";
 }

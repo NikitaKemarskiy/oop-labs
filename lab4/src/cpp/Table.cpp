@@ -102,8 +102,12 @@ string* Table::findById(int id, ifstream &fin) {
     return arr;
 }
 
-string* Table::find(string column, string value, ifstream &fin) {
-    if (column.compare("id") == 0) { return findById(stoi(value), fin); } // Passed column is id
+vector<string*> Table::find(string column, string value, ifstream &fin) {
+    vector<string*> rows;
+    if (column.compare("id") == 0) { // Passed column is id
+        rows.push_back(findById(stoi(value), fin));
+        return rows;
+    }
     bool hasIndex = true; // Flag
     Index* curr = indexes[column]; // Current index
     while (curr && curr->getValue() != "id") { // Loop to check if indexes chain lead to id
@@ -111,20 +115,31 @@ string* Table::find(string column, string value, ifstream &fin) {
     }
     if (!curr) { hasIndex = false; } // Passed column indexes chain doesn't lead to id
     if (hasIndex) { // There's an index for search
-        curr = indexes[column];
-        while (true) {
-            value = to_string(curr->find(stod(value)));
-            if (curr->getValue() == "id") { return findById(stoi(value), fin); }
-            curr = indexes[curr->getValue()];
+        vector<int> ids = findIds(column, value);
+        for (int i = 0; i < ids.size(); i++) {
+            rows.push_back(findById(ids[i], fin));
         }
     }
     // Нету индекса для поиска
     // Перебираем весь файл таблицы в поисках
-    return nullptr;
+    return rows;
 }
 
-string** Table::findAll(string column, string value, ifstream &fin) {
-    //...
+vector<int> Table::findIds(string column, string value) {
+    vector<int> ids;
+    if (column.compare("id") == 0) { // Passed column is id
+        ids.push_back(stoi(value));
+        return ids;
+    }
+    Index* curr = indexes[column];
+    vector<double> values = curr->find(stod(value));
+    for (int i = 0; i < values.size(); i++) {
+        vector<int> result = (findIds(curr->getValue(), to_string(values[i])));
+        for (int i = 0; i < result.size(); i++) {
+            ids.push_back(result[i]);
+        }
+    }
+    return ids;
 }
 
 string Table::getName() { // Table name getter

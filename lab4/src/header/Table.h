@@ -34,8 +34,8 @@ public:
     int getLineSize();
     int getColumnsAmount();
     map<string, Index*> getIndexes();
-    string* find(string column, string value, ifstream& fin);
-    string** findAll(string column, string value, ifstream& fin);
+    vector<string*> find(string column, string value, ifstream& fin);
+    vector<int> findIds(string columns, string value);
     string getName();
 };
 
