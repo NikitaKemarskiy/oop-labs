@@ -36,15 +36,15 @@ void Table::add(string* args, ofstream& fout) { // Method for adding a row
     fout << str + "\n";
 
     for (map<string, Index*>::iterator iter = indexes.begin(); iter != indexes.end(); ++iter) {
-        int name = columns.at(iter->first);
-        int value = columns.at(iter->second->getValue());
+        int name = columns[iter->first];
+        int value = columns[iter->second->getValue()];
         Index* indexCurr = iter->second;
         indexCurr->add(stod(args[name]), stod(args[value]));
     }
 }
 
 bool Table::addIndex(string name, string value) { // Method for adding an index
-    if (init || !hasColumn(name) || hasIndex(name)) { return 1; }
+    if (init || !hasColumn(name) || !hasColumn(value) || hasIndex(name)) { return 1; }
     Index* index = new Index(name, value);
     indexes.insert(pair<string, Index*>(name, index));
     return 0;

@@ -1,8 +1,6 @@
 #include "../header/Database.h"
 #include "../../libs/header/Csv.h"
 
-#include "../header/Tree.h"
-
 #include <string>
 #include <iostream>
 using namespace std;
@@ -31,7 +29,4 @@ void createPlacesTable(Database &database) { // Function for creating the places
     string columns[] = { "id", "latitude", "longitude", "type", "subtype", "name", "address" }; // Table columns
     int amount = 7; // Amount of columns
     database.addTable("places", columns, amount); // Add places table
-    /*
-     * Читаем файл input/table.csv и на основе его заполняем таблицу places
-     */
 }

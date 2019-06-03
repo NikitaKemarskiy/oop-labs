@@ -11,6 +11,7 @@ string* csv::parse(string row, int amount) {
 
     for (int i = 0; i < row.length(); i++) {
         if ((row[i] == ',' && !quoted) || i == row.length() - 1) {
+            if (i == row.length() - 1) { curr += row[i]; }
             if (curr[0] == '"' && curr[curr.length() - 1] == '"') {
                 curr.erase(0, 1);
                 curr.erase(curr.length() - 1, 1);
