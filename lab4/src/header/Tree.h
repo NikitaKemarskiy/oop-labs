@@ -10,18 +10,20 @@ using namespace std;
 class Tree {
 private:
     Node* root;
-    unsigned int getHeight(Node* node);
     int balanceFactor(Node* node);
+    unsigned int getHeight(Node* node);
     void calculateHeight(Node* node);
     Node* leftRotate(Node* node);
     Node* rightRotate(Node* node);
     Node* balancing(Node* node);
     Node* insert(Node* node, double key, double data);
+    vector<double> find(Node* node, double greater, double less);
 public:
     Tree();
     void init(string data);
     void addNode(double key, double data);
     vector<double> find(double key);
+    vector<double> find(double greater, double less);
     string serialize();
 
     void bypass();

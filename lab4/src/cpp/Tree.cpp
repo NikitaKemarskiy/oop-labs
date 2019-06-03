@@ -73,6 +73,36 @@ Node* Tree::insert(Node *node, double key, double data) {
     return balancing(node);
 }
 
+vector<double> Tree::find(Node* node, double greater, double less) {
+    vector<double> values;
+    if (!node) { return values; }
+    if (node->getKey() >= greater && node->getKey() < less) {
+        vector<double> data = node->getData();
+        for (int i = 0; i < data.size(); i++) {
+            values.push_back(data[i]);
+        }
+        data = find(node->getLeft(), greater, less);
+        for (int i = 0; i < data.size(); i++) {
+            values.push_back(data[i]);
+        }
+        data = find(node->getRight(), greater, less);
+        for (int i = 0; i < data.size(); i++) {
+            values.push_back(data[i]);
+        }
+    } else if (node->getKey() < greater) {
+        vector<double> data = find(node->getRight(), greater, less);
+        for (int i = 0; i < data.size(); i++) {
+            values.push_back(data[i]);
+        }
+    } else if (node->getKey() >= less) {
+        vector<double> data = find(node->getLeft(), greater, less);
+        for (int i = 0; i < data.size(); i++) {
+            values.push_back(data[i]);
+        }
+    }
+    return values;
+}
+
 void Tree::init(string data) {
     if (root) { return; } // Tree isn't empty
     string buff = "";
@@ -117,6 +147,12 @@ vector<double> Tree::find(double key) {
     }
     vector<double> temp;
     return temp;
+}
+
+vector<double> Tree::find(double greater, double less) {
+    vector<double> values;
+    values = find(root, greater, less);
+    return values;
 }
 
 string Tree::serialize() {

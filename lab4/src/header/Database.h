@@ -34,6 +34,7 @@ public:
     bool hasTable(string name);
     int getColumnsAmount();
     vector<string*> find(string column, string value);
+    vector<string*> find(string column, string greater, string less);
     string getName();
 };
 

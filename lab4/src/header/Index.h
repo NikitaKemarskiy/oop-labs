@@ -18,6 +18,7 @@ public:
     void init(string data);
     void add(double key, double data);
     vector<double> find(double key);
+    vector<double> find(double greater, double less);
     string getName();
     string getValue();
     string serialize();

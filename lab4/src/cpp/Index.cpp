@@ -23,6 +23,10 @@ vector<double> Index::find(double key) {
     return tree.find(key);
 }
 
+vector<double> Index::find(double greater, double less) {
+    return tree.find(greater, less);
+}
+
 string Index::getName() {
     return name;
 }

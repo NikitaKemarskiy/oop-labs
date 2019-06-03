@@ -21,6 +21,7 @@ private:
 
     string* findById(int id, ifstream& fin);
     vector<int> findIds(string columns, string value);
+    vector<int> findIds(string columns, string greater, string less);
 
     const static int defaultSize;
 public:
@@ -36,6 +37,7 @@ public:
     int getColumnsAmount();
     map<string, Index*> getIndexes();
     vector<string*> find(string column, string value, ifstream& fin);
+    vector<string*> find(string column, string greater, string less, ifstream& fin);
     string getName();
 };
 

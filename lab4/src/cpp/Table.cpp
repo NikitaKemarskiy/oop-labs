@@ -119,6 +119,25 @@ vector<int> Table::findIds(string column, string value) {
     return ids;
 }
 
+vector<int> Table::findIds(string column, string greater, string less) {
+    vector<int> ids;
+    if (column.compare("id") == 0) { // Passed column is id
+        for (int i = stoi(greater); i < stoi(less); i++) {
+            ids.push_back(i);
+        }
+        return ids;
+    }
+    Index* curr = indexes[column];
+    vector<double> values = curr->find(stod(greater), stod(less));
+    for (int i = 0; i < values.size(); i++) {
+        vector<int> result = (findIds(curr->getValue(), to_string(values[i])));
+        for (int i = 0; i < result.size(); i++) {
+            ids.push_back(result[i]);
+        }
+    }
+    return ids;
+}
+
 vector<string*> Table::find(string column, string value, ifstream &fin) {
     vector<string *> rows;
     if (column.compare("id") == 0) { // Passed column is id
@@ -133,6 +152,31 @@ vector<string*> Table::find(string column, string value, ifstream &fin) {
     if (!curr) { hasIndex = false; } // Passed column indexes chain doesn't lead to id
     if (hasIndex) { // There's an index for search
         vector<int> ids = findIds(column, value);
+        for (int i = 0; i < ids.size(); i++) {
+            rows.push_back(findById(ids[i], fin));
+        }
+    }
+    // Нету индекса для поиска
+    // Перебираем весь файл таблицы в поисках
+    return rows;
+}
+
+vector<string*> Table::find(string column, string greater, string less, ifstream &fin) {
+    vector<string*> rows;
+    if (column.compare("id") == 0) { // Passed column is id
+        for (int i = stoi(greater); i < stoi(less); i++) {
+            rows.push_back(findById(i, fin));
+        }
+        return rows;
+    }
+    bool hasIndex = true; // Flag
+    Index *curr = indexes[column]; // Current index
+    while (curr && curr->getValue() != "id") { // Loop to check if indexes chain lead to id
+        curr = indexes[curr->getValue()];
+    }
+    if (!curr) { hasIndex = false; } // Passed column indexes chain doesn't lead to id
+    if (hasIndex) { // There's an index for search
+        vector<int> ids = findIds(column, greater, less);
         for (int i = 0; i < ids.size(); i++) {
             rows.push_back(findById(ids[i], fin));
         }

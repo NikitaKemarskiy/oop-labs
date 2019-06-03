@@ -163,6 +163,14 @@ vector<string*> Database::find(string column, string value) {
     return curr->find(column, value, fin);
 }
 
+vector<string*> Database::find(string column, string greater, string less) {
+    if (!curr) { // No current table
+        vector<string*> vector;
+        return vector;
+    }
+    return curr->find(column, greater, less, fin);
+}
+
 string Database::getName() { // Database name getter
     return name;
 }
