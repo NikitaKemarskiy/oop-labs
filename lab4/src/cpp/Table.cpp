@@ -120,13 +120,13 @@ vector<int> Table::findIds(string column, string value) {
 }
 
 vector<string*> Table::find(string column, string value, ifstream &fin) {
-    vector<string*> rows;
+    vector<string *> rows;
     if (column.compare("id") == 0) { // Passed column is id
         rows.push_back(findById(stoi(value), fin));
         return rows;
     }
     bool hasIndex = true; // Flag
-    Index* curr = indexes[column]; // Current index
+    Index *curr = indexes[column]; // Current index
     while (curr && curr->getValue() != "id") { // Loop to check if indexes chain lead to id
         curr = indexes[curr->getValue()];
     }
