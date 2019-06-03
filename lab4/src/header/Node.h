@@ -2,12 +2,13 @@
 #define LAB4_NODE_H
 
 #include <string>
+#include <vector>
 using namespace std;
 
 class Node{
 private:
     double key;
-    double data;
+    vector<double> data;
     unsigned int height;
     Node* left;
     Node* right;
@@ -15,7 +16,7 @@ public:
     Node();
     Node(double key, double data);
     double getKey() { return key; }
-    double getData() { return data; }
+    vector<double> getData() { return data; }
     unsigned int getHeight() { return height; }
     Node* getLeft() { return left; }
     Node* getRight() { return right; }

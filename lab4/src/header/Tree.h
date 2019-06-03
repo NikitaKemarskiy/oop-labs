@@ -3,6 +3,7 @@
 
 #include "../header/Node.h"
 
+#include <vector>
 #include <string>
 using namespace std;
 
@@ -20,7 +21,7 @@ public:
     Tree();
     void init(string data);
     void addNode(double key, double data);
-    double find(double key);
+    vector<double> find(double key);
     string serialize();
 
     void bypass();

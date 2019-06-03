@@ -2,7 +2,7 @@
 
 Node::Node() {
     this->key = 0;
-    this->data = 0;
+    this->data.clear();
     this->height = 1;
     this->left = nullptr;
     this->right = nullptr;
@@ -10,7 +10,7 @@ Node::Node() {
 
 Node::Node(double key, double data) {
     this->key = key;
-    this->data = data;
+    this->data.push_back(data);
     this->height = 1;
     this->left = nullptr;
     this->right = nullptr;
