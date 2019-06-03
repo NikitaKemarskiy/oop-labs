@@ -65,11 +65,9 @@ Node* Tree::insert(Node *node, double key, double data) {
     }
     if (key < node->getKey()) {
         node->setLeft(insert(node->getLeft(), key, data));
-    }
-    if(key > node->getKey()) {
+    } else if (key > node->getKey()) {
         node->setRight(insert(node->getRight(), key, data));
-    }
-    if(key == node->getKey()){
+    } else if (key == node->getKey()){
         node->addData(data);
     }
     return balancing(node);
@@ -85,11 +83,19 @@ void Tree::init(string data) {
         if (data[i] == ',' || i == data.length() - 1) {
             buff.erase(0, 1);
             buff.erase(buff.length() - 1, 1);
-            string keyStr = buff.substr(0, buff.find(';'));
-            string dataStr = buff.substr(buff.find(';') + 1);
-            addNode(stod(keyStr), stod(dataStr));
+            string keyStr = buff.substr(0, buff.find(':'));
+            string dataStr = buff.substr(buff.find(':') + 1);
+            string temp = "";
+            for (int j = 0; j < dataStr.length(); j++) {
+                if (dataStr[j] != ';') {
+                    temp += dataStr[j];
+                }
+                if (dataStr[j] == ';' || j == dataStr.length() - 1) {
+                    addNode(stod(keyStr), stod(temp));
+                    temp = "";
+                }
+            }
             buff = "";
-            continue;
         }
     }
 }

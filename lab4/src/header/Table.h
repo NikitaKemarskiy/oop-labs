@@ -20,6 +20,7 @@ private:
     bool init; // Flag if the table was ever used before (to prevent from creating new indexes)
 
     string* findById(int id, ifstream& fin);
+    vector<int> findIds(string columns, string value);
 
     const static int defaultSize;
 public:
@@ -34,8 +35,7 @@ public:
     int getLineSize();
     int getColumnsAmount();
     map<string, Index*> getIndexes();
-    string* find(string column, string value, ifstream& fin);
-    string** findAll(string column, string value, ifstream& fin);
+    vector<string*> find(string column, string value, ifstream& fin);
     string getName();
 };
 

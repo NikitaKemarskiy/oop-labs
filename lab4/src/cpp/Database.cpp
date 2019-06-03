@@ -80,7 +80,7 @@ void Database::init() { // Method for initializing the database
 
 void Database::save() { // Method for saving updated data on disk
     for (map<string, Table*>::iterator iter = tables.begin(); iter != tables.end(); ++iter) {
-        Table *curr = iter->second;
+        Table* curr = iter->second;
         map<string, Index*> indexes = curr->getIndexes();
         for (map<string, Index*>::iterator iterInd = indexes.begin(); iterInd != indexes.end(); ++iterInd) {
             string name = iterInd->first;
@@ -92,7 +92,7 @@ void Database::save() { // Method for saving updated data on disk
     }
 }
 
-void Database::add(string *args) { // Method for adding a row to a table
+void Database::add(string* args) { // Method for adding a row to a table
     if (!curr) { return; } // No current table
     curr->add(args, fout);
 }
@@ -155,14 +155,12 @@ int Database::getColumnsAmount() {
     return curr->getColumnsAmount();
 }
 
-string* Database::find(string column, string value) {
-    if (!curr) { return nullptr; } // No current table
+vector<string*> Database::find(string column, string value) {
+    if (!curr) { // No current table
+        vector<string*> vector;
+        return vector;
+    }
     return curr->find(column, value, fin);
-}
-
-string** Database::findAll(string column, string value) {
-    if (!curr) { return nullptr; } // No current table
-    return curr->findAll(column, value, fin);
 }
 
 string Database::getName() { // Database name getter

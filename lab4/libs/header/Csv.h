@@ -5,7 +5,7 @@
 using namespace std;
 
 namespace csv {
-    string *parse(string row, int amount);
+    string* parse(string row, int amount);
 }
 
 #endif //LAB4_CSV_H
