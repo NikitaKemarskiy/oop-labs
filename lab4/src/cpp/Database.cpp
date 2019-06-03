@@ -150,6 +150,11 @@ bool Database::hasTable(string name) { // Method for checking if database has a 
     return !(tables.find(name) == tables.end());
 }
 
+int Database::getColumnsAmount() {
+    if (!curr) { return -1; } // No current table
+    return curr->getColumnsAmount();
+}
+
 string* Database::find(string column, string value) {
     if (!curr) { return nullptr; } // No current table
     return curr->find(column, value, fin);

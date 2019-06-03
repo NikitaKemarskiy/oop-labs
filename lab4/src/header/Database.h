@@ -32,6 +32,7 @@ public:
     void setCurrent(string name);
     void setSize(string name, int size);
     bool hasTable(string name);
+    int getColumnsAmount();
     string* find(string column, string value);
     string** findAll(string column, string value);
     string getName();

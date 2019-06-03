@@ -1,5 +1,6 @@
 #include "../header/Table.h"
 #include "../header/Index.h"
+#include "../../libs/header/Csv.h"
 
 Table::Table(string name, string* args, int columnsAmount) {
     this->name = name;
@@ -12,7 +13,7 @@ Table::Table(string name, string* args, int columnsAmount) {
     }
     lineSize = 0;
     for (map<string, int>::iterator iter = sizes.begin(); iter != sizes.end(); ++iter) {
-        lineSize += iter->second;
+        lineSize += iter->second + 1;
     }
 }
 
@@ -88,7 +89,17 @@ map<string, Index*> Table::getIndexes() {
 }
 
 string* Table::findById(int id, ifstream &fin) {
-    cout << "findById called, index: " << id << endl;
+    fin.seekg(0);
+    for (int i = 0; i < id - 1; i++) {
+        fin.ignore(lineSize);
+    }
+    string row;
+    getline(fin, row);
+    string* arr = csv::parse(row, columnsAmount);
+    for (int i = 0; i < columnsAmount; i++) {
+        arr[i].erase(arr[i].find_last_not_of(" \n\r\t")+1);
+    }
+    return arr;
 }
 
 string* Table::find(string column, string value, ifstream &fin) {
@@ -103,9 +114,7 @@ string* Table::find(string column, string value, ifstream &fin) {
         curr = indexes[column];
         while (true) {
             value = to_string(curr->find(stod(value)));
-            if (column == "id") {
-                return findById(stoi(value), fin);
-            }
+            if (curr->getValue() == "id") { return findById(stoi(value), fin); }
             curr = indexes[curr->getValue()];
         }
     }
