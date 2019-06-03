@@ -19,6 +19,8 @@ private:
     int lineSize; // Size of a line in bytes
     bool init; // Flag if the table was ever used before (to prevent from creating new indexes)
 
+    string* findById(int id, ifstream& fin);
+
     const static int defaultSize;
 public:
     Table(string name, string* args, int columnsAmount);
@@ -30,7 +32,10 @@ public:
     bool hasColumn(string name);
     bool hasIndex(string name);
     int getLineSize();
+    int getColumnsAmount();
     map<string, Index*> getIndexes();
+    string* find(string column, string value, ifstream& fin);
+    string** findAll(string column, string value, ifstream& fin);
     string getName();
 };
 

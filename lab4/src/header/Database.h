@@ -16,8 +16,6 @@ private:
     Table* curr;
     ifstream fin;
     ofstream fout;
-    // Нужно добавить в качестве поля текущий поток для работы с таблицей
-    // Потом этот поток будет использоваться для чтения/записи таблицы
 
     static const string tableDirectory;
     static const string indexDirectory;
@@ -28,12 +26,14 @@ public:
     ~Database();
     void init();
     void save();
-    void addTable(string name, string* args, int amount);
     void add(string* args);
+    void addTable(string name, string* args, int amount);
     void addIndex(string name, string value);
     void setCurrent(string name);
     void setSize(string name, int size);
     bool hasTable(string name);
+    string* find(string column, string value);
+    string** findAll(string column, string value);
     string getName();
 };
 

@@ -92,6 +92,11 @@ void Database::save() { // Method for saving updated data on disk
     }
 }
 
+void Database::add(string *args) { // Method for adding a row to a table
+    if (!curr) { return; } // No current table
+    curr->add(args, fout);
+}
+
 void Database::addTable(string name, string* args, int amount) { // Method for adding a table
     if (hasTable(name)) { return; } // Table already exists
     Table* table = new Table(name, args, amount);
@@ -108,11 +113,6 @@ void Database::addTable(string name, string* args, int amount) { // Method for a
     foutMetadata.close();
 }
 
-void Database::add(string *args) { // Method for adding a row to a table
-    if (!curr) { return; } // No current table
-    curr->add(args, fout);
-}
-
 void Database::addIndex(string name, string value) { // Method for adding an index to a current table
     if (!curr) { return; } // No current table
     int status = curr->addIndex(name, value);
@@ -125,6 +125,7 @@ void Database::addIndex(string name, string value) { // Method for adding an ind
 
 void Database::setCurrent(string name) { // Method for setting current table
     if (!hasTable(name)) { return; } // Table doesn't exist
+    if (curr && name.compare(curr->getName()) == 0) { return; } // Current table and the new table are the same
     curr = tables[name];
     if (fin.is_open()) {
         fin.close();
@@ -147,6 +148,16 @@ void Database::setSize(string name, int size) { // Method for setting table colu
 
 bool Database::hasTable(string name) { // Method for checking if database has a table
     return !(tables.find(name) == tables.end());
+}
+
+string* Database::find(string column, string value) {
+    if (!curr) { return nullptr; } // No current table
+    return curr->find(column, value, fin);
+}
+
+string** Database::findAll(string column, string value) {
+    if (!curr) { return nullptr; } // No current table
+    return curr->findAll(column, value, fin);
 }
 
 string Database::getName() { // Database name getter

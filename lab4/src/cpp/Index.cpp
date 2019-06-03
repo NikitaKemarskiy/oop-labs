@@ -19,6 +19,10 @@ void Index::add(double key, double data) {
     tree.addNode(key, data);
 }
 
+double Index::find(double key) {
+    return tree.find(key);
+}
+
 string Index::getName() {
     return name;
 }

@@ -20,7 +20,7 @@ public:
     Tree();
     void init(string data);
     void addNode(double key, double data);
-    double search(double key);
+    double find(double key);
     string serialize();
 
     void bypass();

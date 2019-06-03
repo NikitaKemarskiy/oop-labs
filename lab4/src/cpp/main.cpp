@@ -14,10 +14,11 @@ int main() {
     if (!database.hasTable("places")) { createPlacesTable(database); } // Database has no places table
     database.setCurrent("places");
 
-    database.addIndex("longitude", "latitude");
-
-    string arr[] = {"1","123","45","type1","subtype3","some name","123 karla marska"};
+    string arr[] = { "1", "123", "45", "1", "subtype3", "some name", "123 karla marska" };
     database.add(arr);
+
+    database.find("latitude", "123");
+    database.find("longitude", "45");
 
     database.save();
 
@@ -25,8 +26,11 @@ int main() {
 }
 
 void createPlacesTable(Database &database) { // Function for creating the places table
-    // Широта; Довгота; Тип; Підтип; Назва; Адреса;
+    // Широта; Долгота; Тип; Подтип; Название; Адрес;
     string columns[] = { "id", "latitude", "longitude", "type", "subtype", "name", "address" }; // Table columns
     int amount = 7; // Amount of columns
     database.addTable("places", columns, amount); // Add places table
+    database.setCurrent("places");
+    database.addIndex("longitude", "latitude");
+    database.addIndex("latitude", "id");
 }

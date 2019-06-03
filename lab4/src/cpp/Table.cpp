@@ -79,8 +79,43 @@ int Table::getLineSize() {
     return lineSize;
 }
 
+int Table::getColumnsAmount() {
+    return columnsAmount;
+}
+
 map<string, Index*> Table::getIndexes() {
     return indexes;
+}
+
+string* Table::findById(int id, ifstream &fin) {
+    cout << "findById called, index: " << id << endl;
+}
+
+string* Table::find(string column, string value, ifstream &fin) {
+    if (column.compare("id") == 0) { return findById(stoi(value), fin); } // Passed column is id
+    bool hasIndex = true; // Flag
+    Index* curr = indexes[column]; // Current index
+    while (curr && curr->getValue() != "id") { // Loop to check if indexes chain lead to id
+        curr = indexes[curr->getValue()];
+    }
+    if (!curr) { hasIndex = false; } // Passed column indexes chain doesn't lead to id
+    if (hasIndex) { // There's an index for search
+        curr = indexes[column];
+        while (true) {
+            value = to_string(curr->find(stod(value)));
+            if (column == "id") {
+                return findById(stoi(value), fin);
+            }
+            curr = indexes[curr->getValue()];
+        }
+    }
+    // Нету индекса для поиска
+    // Перебираем весь файл таблицы в поисках
+    return nullptr;
+}
+
+string** Table::findAll(string column, string value, ifstream &fin) {
+    //...
 }
 
 string Table::getName() { // Table name getter

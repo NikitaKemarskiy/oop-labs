@@ -94,7 +94,7 @@ void Tree::addNode(double key, double data) {
     root = insert(root, key, data);
 }
 
-double Tree::search(double key) {
+double Tree::find(double key) {
     Node *newNode = root;
     while (newNode) {
         if (key < newNode->getKey()) {
