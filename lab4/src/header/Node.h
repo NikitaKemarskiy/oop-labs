@@ -20,6 +20,7 @@ public:
     unsigned int getHeight() { return height; }
     Node* getLeft() { return left; }
     Node* getRight() { return right; }
+    void addData(double data_) { data.push_back(data_); }
     void setHeight(unsigned int height) { this->height = height; }
     void setLeft(Node* left) { this->left = left; }
     void setRight(Node* right) { this->right = right; }

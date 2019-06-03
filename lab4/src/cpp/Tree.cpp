@@ -65,8 +65,12 @@ Node* Tree::insert(Node *node, double key, double data) {
     }
     if (key < node->getKey()) {
         node->setLeft(insert(node->getLeft(), key, data));
-    } else {
+    }
+    if(key > node->getKey()) {
         node->setRight(insert(node->getRight(), key, data));
+    }
+    if(key == node->getKey()){
+        node->addData(data);
     }
     return balancing(node);
 }
