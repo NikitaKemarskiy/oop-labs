@@ -1,9 +1,10 @@
 #include "../header/Database.h"
 #include "../../libs/header/Csv.h"
-
+#include "../../libs/header/Functions.h"
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <vector>
 
 #define INPUT_FILE "../input/table.csv"
 using namespace std;
@@ -18,10 +19,23 @@ int main() {
     database.setCurrent("places");
 
     //vector<string*> result = database.find("latitude", "49.01097");
-    vector<string*> result = database.find("latitude", "49.01", "50.5");
+    /*vector<string*> result = database.find("latitude", "49.01", "50.5");
     for (int i = 0; i < result.size(); i++) {
         for (int j = 0; j < database.getColumnsAmount(); j++) {
             cout << result[i][j] << "; ";
+        }
+        cout << endl;
+    }*/
+    vector<string> limits;
+    limits = getLimits("50.454", "30.523", 4.0);
+    cout << limits[0] << " " << limits[1] << endl;
+    cout << limits[2] << " " << limits[3] << endl;
+    vector<string*> resultLatitude = database.find("latitude", limits[1], limits[0]);
+    vector<string*> resultLongitude = database.find("longitude", limits[3], limits[2]);
+    vector<string*> resultSquare = getSquare(resultLatitude, resultLongitude);
+    for(int i = 0; i < resultSquare.size(); i++){
+        for(int j = 0; j < database.getColumnsAmount(); j++){
+            cout << resultSquare[i][j] << "; ";
         }
         cout << endl;
     }

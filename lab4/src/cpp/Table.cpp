@@ -92,12 +92,8 @@ map<string, Index*> Table::getIndexes() {
 string* Table::findById(int id, ifstream &fin) {
     fin.seekg(0);
     fin.ignore(lineSize * (id - 1));
-    /*for (int i = 0; i < id - 1; i++) {
-        fin.ignore(lineSize);
-    }*/
     string row;
     getline(fin, row);
-    cout << "Row: " << row << endl;
     string* arr = csv::parse(row, columnsAmount, ';');
     for (int i = 0; i < columnsAmount; i++) {
         arr[i].erase(arr[i].find_last_not_of(" \n\r\t")+1);
