@@ -3,6 +3,10 @@
 #include <iostream>
 
 string* csv::parse(string row, int amount) {
+    return parse(row, amount, ',');
+}
+
+string* csv::parse(string row, int amount, char delimiter) {
     string* items = new string[amount];
 
     string curr = "";
@@ -10,7 +14,7 @@ string* csv::parse(string row, int amount) {
     int index = 0;
 
     for (int i = 0; i < row.length(); i++) {
-        if ((row[i] == ',' && !quoted) || i == row.length() - 1) {
+        if ((row[i] == delimiter && !quoted) || i == row.length() - 1) {
             if (i == row.length() - 1) { curr += row[i]; }
             if (curr[0] == '"' && curr[curr.length() - 1] == '"') {
                 curr.erase(0, 1);

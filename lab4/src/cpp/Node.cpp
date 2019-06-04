@@ -19,11 +19,11 @@ Node::Node(double key, double data) {
 string Node::toString() {
     string keyStr = to_string(key);
     string dataStr = "";
-    keyStr.erase(keyStr.find_last_not_of('0') + 1, string::npos);
+    keyStr.erase(keyStr.find_last_not_of('0') + 1);
     for (int i = 0; i < data.size(); i++) {
         double curr = data[i];
         dataStr += to_string(curr);
-        dataStr.erase(dataStr.find_last_not_of('0') + 1, string::npos);
+        dataStr.erase(dataStr.find_last_not_of('0') + 1);
         if (dataStr[dataStr.length() - 1] == '.') {
             dataStr.erase(dataStr.length() - 1, 1);
         }

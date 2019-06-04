@@ -38841,8 +38841,7 @@
 48,90459;24,52976;amenity;drinking_water;Австрійська криниця;;
 49,84439;24,01082;shop;convenience;Продукти;;
 49,84398;24,01063;shop;beauty;Престиж;;
-48,00972;26,0404;shop;convenience;Non-Stop 24;Головна  1ж
-;
+48,00972;26,0404;shop;convenience;Non-Stop 24;Головна;
 48,73854;37,58344;shop;beauty;Багира;Миру проспект,10;
 48,59085;37,99612;tourism;attraction;Карета;;
 48,42618;35,02431;shop;convenience;Ласунчик;;
@@ -39632,8 +39631,7 @@
 48,42221;26,2767;shop;convenience;Наталі;Головна,110;
 48,42211;26,2778;shop;car_repair;СТО;;
 49,99244;36,23331;shop;clothes;МЯСО;Пушкінська вулиця,5;
-50,7317;30,64152;tourism;guest_house;;Лес
-;
+50,7317;30,64152;tourism;guest_house;;Лес;
 51,22505;33,18916;shop;convenience;Магазин;Свободи вулиця;
 51,21553;33,15572;shop;photo;;Вернадского улица;
 45,50729;32,7047;shop;computer;F5;;
@@ -44841,4 +44839,4 @@
 46,61588;32,58194;shop;convenience;Везунчик;;
 46,61533;32,57983;shop;supermarket;Green market;;
 44,54388;34,2784;tourism;guest_house;Жильё у Олега;Ленинградская улица,22;
-44,54551;34,29579;tourism;attraction;Скала Шал
+44,54551;34,29579;tourism;attraction;Скала Шал;;
