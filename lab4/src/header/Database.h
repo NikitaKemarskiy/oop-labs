@@ -28,9 +28,9 @@ public:
     void save();
     void add(string* args);
     void addTable(string name, string* args, int amount);
+    void addTable(string name, string* args, int* sizes, int amount);
     void addIndex(string name, string value);
     void setCurrent(string name);
-    void setSize(string name, int size);
     bool hasTable(string name);
     int getColumnsAmount();
     vector<string*> find(string column, string value);

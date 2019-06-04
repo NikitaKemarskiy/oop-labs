@@ -20,8 +20,9 @@ void Database::init() { // Method for initializing the database
         string buff = "";
         getline(fin, buff);
         if (fin.eof()) { break; }
-        arr = csv::parse(buff, 3);
+        arr = csv::parse(buff, 4);
         string* columns = new string[stoi(arr[1])];
+        int* sizes = new int[stoi(arr[1])];
         string temp = "";
         int index = 0;
         for (int j = 0; j < arr[2].length(); j++) {
@@ -35,7 +36,20 @@ void Database::init() { // Method for initializing the database
                 columns[index++] = temp;
             }
         }
-        Table* table = new Table(arr[0], columns, stoi(arr[1]));
+        temp = "";
+        index = 0;
+        for (int j = 0; j < arr[3].length(); j++) {
+            if (arr[3][j] == ':') {
+                sizes[index++] = stoi(temp);
+                temp = "";
+                continue;
+            }
+            temp += arr[3][j];
+            if (j == arr[3].length() - 1) {
+                sizes[index++] = stoi(temp);
+            }
+        }
+        Table* table = new Table(arr[0], columns, sizes, stoi(arr[1]));
         tables.insert(pair<string, Table*>(arr[0], table));
 
         delete[] arr;
@@ -98,8 +112,16 @@ void Database::add(string* args) { // Method for adding a row to a table
 }
 
 void Database::addTable(string name, string* args, int amount) { // Method for adding a table
+    int* sizes = new int[amount];
+    for (int i = 0; i < amount; i++) {
+        sizes[i] = Table::getDefaultSize();
+    }
+    addTable(name, args, sizes, amount);
+}
+
+void Database::addTable(string name, string* args, int* sizes, int amount) { // Method for adding a table with specified sizes
     if (hasTable(name)) { return; } // Table already exists
-    Table* table = new Table(name, args, amount);
+    Table* table = new Table(name, args, sizes, amount);
     tables.insert(pair<string, Table*>(name, table));
 
     ofstream foutMetadata(metadataTableFile, ios::app);
@@ -107,6 +129,11 @@ void Database::addTable(string name, string* args, int amount) { // Method for a
     str += to_string(amount) + ",";
     for (int i = 0; i < amount; i++) {
         str += args[i];
+        if (i < amount - 1) { str += ":"; }
+    }
+    str += ",";
+    for (int i = 0; i < amount; i++) {
+        str += to_string(sizes[i]);
         if (i < amount - 1) { str += ":"; }
     }
     foutMetadata << str + "\n";
@@ -139,11 +166,6 @@ void Database::setCurrent(string name) { // Method for setting current table
         cout << "Error: No data directory" << endl;
         exit(1);
     }
-}
-
-void Database::setSize(string name, int size) { // Method for setting table column size in bytes
-    if (!curr) { return; } // No current table
-    curr->setSize(name, size);
 }
 
 bool Database::hasTable(string name) { // Method for checking if database has a table

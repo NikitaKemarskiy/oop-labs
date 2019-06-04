@@ -3,12 +3,20 @@
 #include "../../libs/header/Csv.h"
 
 Table::Table(string name, string* args, int columnsAmount) {
+    int* sizesArg = new int[columnsAmount];
+    for (int i = 0; i < columnsAmount; i++) {
+        sizesArg[i] = defaultSize;
+    }
+    Table(name, args, sizesArg, columnsAmount);
+}
+
+Table::Table(string name, string* args, int* sizesArg, int columnsAmount) {
     this->name = name;
     this->columnsAmount = columnsAmount;
     init = false;
     for (int i = 0; i < columnsAmount; i++) { // Fill the columns map with names and their indexes in array
         columns.insert(pair<string, int>(args[i], i));
-        sizes.insert(pair<string, int>(args[i], defaultSize));
+        sizes.insert(pair<string, int>(args[i], sizesArg[i]));
         columnsIndexes.insert(pair<int, string>(i, args[i]));
     }
     lineSize = 0;
@@ -57,13 +65,6 @@ void Table::addIndex(string name, string value, string data) { // Method for add
     indexes.insert(pair<string, Index*>(name, index));
 }
 
-void Table::setSize(string name, int size) {
-    if (init || !hasColumn(name) || size < 1) { return; }
-    lineSize -= sizes[name];
-    sizes[name] = size; // Set new size in bytes
-    lineSize += sizes[name];
-}
-
 void Table::setInit(bool init) {
     this->init = init;
 }
@@ -90,11 +91,13 @@ map<string, Index*> Table::getIndexes() {
 
 string* Table::findById(int id, ifstream &fin) {
     fin.seekg(0);
-    for (int i = 0; i < id - 1; i++) {
+    fin.ignore(lineSize * (id - 1));
+    /*for (int i = 0; i < id - 1; i++) {
         fin.ignore(lineSize);
-    }
+    }*/
     string row;
     getline(fin, row);
+    //cout << "Row: " << row << endl;
     string* arr = csv::parse(row, columnsAmount);
     for (int i = 0; i < columnsAmount; i++) {
         arr[i].erase(arr[i].find_last_not_of(" \n\r\t")+1);
@@ -188,6 +191,10 @@ vector<string*> Table::find(string column, string greater, string less, ifstream
 
 string Table::getName() { // Table name getter
     return name;
+}
+
+int Table::getDefaultSize() {
+    return defaultSize;
 }
 
 const int Table::defaultSize = 32;

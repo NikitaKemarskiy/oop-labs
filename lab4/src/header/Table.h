@@ -26,10 +26,10 @@ private:
     const static int defaultSize;
 public:
     Table(string name, string* args, int columnsAmount);
+    Table(string name, string* args, int* sizesArg, int columnsAmount);
     void add(string* args, ofstream &fout);
     bool addIndex(string name, string value);
     void addIndex(string name, string value, string data);
-    void setSize(string name, int size);
     void setInit(bool init);
     bool hasColumn(string name);
     bool hasIndex(string name);
@@ -39,6 +39,8 @@ public:
     vector<string*> find(string column, string value, ifstream& fin);
     vector<string*> find(string column, string greater, string less, ifstream& fin);
     string getName();
+
+    static int getDefaultSize();
 };
 
 

@@ -17,6 +17,14 @@ int main() {
     if (!database.hasTable("places")) { createPlacesTable(database); } // Database has no places table
     database.setCurrent("places");
 
+    vector<string*> result = database.find("latitude", "49.02827");
+    for (int i = 0; i < result.size(); i++) {
+        for (int j = 0; j < database.getColumnsAmount(); j++) {
+            cout << result[i][j] << "; ";
+        }
+        cout << endl;
+    }
+
     database.save();
 
     return 0;
@@ -25,18 +33,12 @@ int main() {
 void createPlacesTable(Database &database) { // Function for creating the places table
     // Широта; Долгота; Тип; Подтип; Название; Адрес;
     string columns[] = { "id", "latitude", "longitude", "type", "subtype", "name", "address" }; // Table columns
+    int sizes[] = { 9, 12, 12, 32, 32, 80, 48 }; // Table columns sizes in bytes
     const int amount = 7; // Amount of columns
-    database.addTable("places", columns, amount); // Add places table
+    database.addTable("places", columns, sizes, amount); // Add places table
     database.setCurrent("places");
     database.addIndex("latitude", "longitude");
     database.addIndex("longitude", "id");
-    database.setSize("id", 9);
-    database.setSize("latitude", 12);
-    database.setSize("longitude", 12);
-    database.setSize("type", 32);
-    database.setSize("subtype", 32);
-    database.setSize("name", 80);
-    database.setSize("address", 48);
 
     ifstream fin(INPUT_FILE);
 
@@ -61,8 +63,9 @@ void createPlacesTable(Database &database) { // Function for creating the places
         }
         arr[1].replace(arr[1].find(','), 1, "."); // Replace ',' with '.' in double values
         arr[2].replace(arr[2].find(','), 1, "."); // Replace ',' with '.' in double values
-        cout << endl;
+
         database.add(arr);
+
         delete[] arr;
         delete[] temp;
     }
