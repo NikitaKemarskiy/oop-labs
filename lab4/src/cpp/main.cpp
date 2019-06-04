@@ -17,7 +17,8 @@ int main() {
     if (!database.hasTable("places")) { createPlacesTable(database); } // Database has no places table
     database.setCurrent("places");
 
-    vector<string*> result = database.find("latitude", "49.02827");
+    //vector<string*> result = database.find("latitude", "49.01097");
+    vector<string*> result = database.find("latitude", "49.01", "50.5");
     for (int i = 0; i < result.size(); i++) {
         for (int j = 0; j < database.getColumnsAmount(); j++) {
             cout << result[i][j] << "; ";

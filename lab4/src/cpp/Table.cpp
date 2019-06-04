@@ -39,7 +39,7 @@ void Table::add(string* args, ofstream& fout) { // Method for adding a row
         }
         str += curr;
         if (i < columnsAmount - 1) {
-            str += ",";
+            str += ";";
         }
     }
     fout << str + "\n";
@@ -97,8 +97,8 @@ string* Table::findById(int id, ifstream &fin) {
     }*/
     string row;
     getline(fin, row);
-    //cout << "Row: " << row << endl;
-    string* arr = csv::parse(row, columnsAmount);
+    cout << "Row: " << row << endl;
+    string* arr = csv::parse(row, columnsAmount, ';');
     for (int i = 0; i < columnsAmount; i++) {
         arr[i].erase(arr[i].find_last_not_of(" \n\r\t")+1);
     }
@@ -142,7 +142,7 @@ vector<int> Table::findIds(string column, string greater, string less) {
 }
 
 vector<string*> Table::find(string column, string value, ifstream &fin) {
-    vector<string *> rows;
+    vector<string*> rows;
     if (column.compare("id") == 0) { // Passed column is id
         rows.push_back(findById(stoi(value), fin));
         return rows;
